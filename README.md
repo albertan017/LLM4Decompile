@@ -42,8 +42,6 @@ import re
 digit_pattern = r'\b0x[a-fA-F0-9]+\b'# binary codes in Hexadecimal
 zeros_pattern = r'^0+\s'#0s
 OPT = ["O0", "O1", "O2", "O3"]
-before = f"# This is the assembly code with {opt_state} optimization:\n"#prompt
-after = "\n# What is the source code?\n"#prompt
 fileName = 'path/to/file'
 with open(fileName+'.c','r') as f:#original file
     c_func = f.read()
@@ -63,7 +61,8 @@ for opt_state in OPT:
         tmp_asm = tmp_asm.split('#')[0].strip()#remove the comments
         input_asm+=tmp_asm+'\n'
     input_asm = re.sub(zeros_pattern, '', input_asm)
-    
+    before = f"# This is the assembly code with {opt_state} optimization:\n"#prompt
+    after = "\n# What is the source code?\n"#prompt
     input_asm_prompt = before+input_asm.strip()+after
     with open(fileName +'_' + opt_state +'.asm','w',encoding='utf-8') as f:
         f.write(input_asm_prompt)
