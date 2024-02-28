@@ -2,9 +2,10 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## 1. Introduction of LLM4Decompile and Decompile-Eval
+We start by compiling a million C code samples from AnghaBench into assembly code using GCC with different configurations, forming a dataset of assembly-source pairs in 4 billion tokens. We then finetune the DeepSeek-Coder model, a leading-edge code LLM, using this dataset. Followed by constructing the evaluation benchmark, Decompile-Eval, based on HumanEval questions and test samples. Specifically, we formulate the evaluation from two perspectives: whether the decompiled code can recompile successfully, and whether it passes all assertions in the test cases. 
+Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its ability to be recompiled with the original GCC compiler (re-compilability) and for its functionality through test assertions (re-executability).
 
-LLM4Decompile aims to decompile x86 assembly instructions into C. It is finetuned from Deepseek-Coder on 2B tokens of assembly-C pairs compiled from AnghaBench.
-Decompile-Eval is derived from HumanEval, we convert the 164 Python solutions and assertions into C, making sure that they compile with the GCC compiler using standard C libraries and pass all the original assertions.
+![Alt text](https://github.com/albertan017/LLM4Decompile/blob/main/samples/pipeline.pdf)
 
 ## 2. Evaluation Results
 ### Metrics
