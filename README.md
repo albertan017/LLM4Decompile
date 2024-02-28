@@ -1,12 +1,12 @@
 # LLM4Decompile
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
-### 1. Introduction of LLM4Decompile
+## 1. Introduction of LLM4Decompile and Decompile-Eval
 
 LLM4Decompile aims to decompile x86 assembly instructions into C. It is finetuned from Deepseek-Coder on 2B tokens of assembly-C pairs compiled from AnghaBench.
 
 
-### 2. Evaluation Results
+## 2. Evaluation Results
 | Model              | Re-compilability |           |           |           |           | Re-executability |           |           |           |           |
 |--------------------|:----------------:|:---------:|:---------:|:---------:|:---------:|:----------------:|-----------|-----------|-----------|:---------:|
 | opt-level          | O0               | O1        | O2        | O3        | Avg.      | O0               | O1        | O2        | O3        | Avg.      |
@@ -18,7 +18,7 @@ LLM4Decompile aims to decompile x86 assembly instructions into C. It is finetune
 
 
 
-### 3. How to Use
+## 3. How to Use
 Here give an example of how to use our model.
 First compile the C code into binary, disassemble the binary into assembly instructions:
 ```python
@@ -73,9 +73,9 @@ inputs = tokenizer(asm_func, return_tensors="pt").to(model.device)
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
-### 4. License
+## 4. License
 This code repository is licensed under the MIT License.
 
-### 5. Contact
+## 5. Contact
 
 If you have any questions, please raise an issue.
