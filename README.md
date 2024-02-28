@@ -32,6 +32,7 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 [llm4decompile-33b](https://huggingface.co/arise-sustech/llm4decompile-33b)
 
 Here give an example of how to use our model.
+
 **Preprocessing:** compile the C code into binary, disassemble the binary into assembly instructions.
 ```python
 import subprocess
@@ -68,7 +69,7 @@ for opt_state in OPT:
         f.write(input_asm_prompt)
 ```
 
-Then use LLM4Decompile to translate the assembly instructions into C:
+**Decompilation:** use LLM4Decompile to translate the assembly instructions into C:
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
@@ -92,7 +93,7 @@ Data are stored in ``llm4decompile/decompile-eval/*.json``, using JSON list form
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
 *   ``c_func``: C solution for HumanEval problem. 
 *   ``c_test``: C test assertions.
-*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing sample](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
+*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
 
 To run the evaluation on Single GPU:
 ```python
