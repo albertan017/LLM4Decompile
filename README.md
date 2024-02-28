@@ -92,7 +92,7 @@ Data are stored in ``llm4decompile/decompile-eval/*.json``, using JSON list form
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
 *   ``c_func``: C solution for HumanEval problem. 
 *   ``c_test``: C test assertions.
-*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our preprocessing sample [preprocess]().
+*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our preprocessing sample [preprocess](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
 
 To run the evaluation on Single GPU:
 ```python
