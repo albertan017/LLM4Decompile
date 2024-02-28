@@ -38,7 +38,7 @@ import subprocess
 import os
 import re
 
-digit_pattern = r'\b0x[a-fA-F0-9]+\b'# hex lines
+digit_pattern = r'\b0x[a-fA-F0-9]+\b'# binary codes in Hexadecimal
 zeros_pattern = r'^0+\s'#0s
 OPT = ["O0", "O1", "O2", "O3"]
 before = f"# This is the assembly code with {opt_state} optimization:\n"
@@ -84,12 +84,18 @@ inputs = tokenizer(asm_func, return_tensors="pt").to(model.device)
         outputs = model.generate(**inputs, max_new_tokens=200)
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
-## 4. On Going
+
+## 4. How to use Decompile-Eval
+```python
+on going
+```
+
+## 5. On Going
 LLM4Binary: We plan to include larger dataset to pre-train the model with assembly code and C code.
 
-## 5. License
+## 6. License
 This code repository is licensed under the MIT License.
 
-## 6. Contact
+## 7. Contact
 
 If you have any questions, please raise an issue.
