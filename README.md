@@ -4,9 +4,14 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 ## 1. Introduction of LLM4Decompile and Decompile-Eval
 
 LLM4Decompile aims to decompile x86 assembly instructions into C. It is finetuned from Deepseek-Coder on 2B tokens of assembly-C pairs compiled from AnghaBench.
-
+Decompile-Eval is derived from HumanEval, we convert the 164 Python solutions and assertions into C, making sure that they compile with the GCC compiler using standard C libraries and pass all the original assertions.
 
 ## 2. Evaluation Results
+### Metrics
+Re-compilability and re-executability serve as critical indicators in validating the effectiveness of a decompilation process. When decompiled code can be recompiled, it provides strong evidence of syntactic integrity. It ensures that the decompiled code is not just readable, but also adheres to the structural and syntactical standards expected by the compiler. 
+However, syntax alone does not guarantee semantic equivalence to the original pre-compiled program. Re-executability provides this critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
+Together, re-compilability and re-executability indicate syntax recovery and semantic preservation - both essential for usable and robust decompilation.
+### Results
 ![Alt text](https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_decompile.png)
 
 
