@@ -1,0 +1,5 @@
+tqdm
+transformers=4.34.1
+loguru
+tqdm
+text_generation
