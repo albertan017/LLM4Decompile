@@ -7,14 +7,7 @@ LLM4Decompile aims to decompile x86 assembly instructions into C. It is finetune
 
 
 ## 2. Evaluation Results
-| Model              | Re-compilability |           |           |           |           | Re-executability |           |           |           |           |
-|--------------------|:----------------:|:---------:|:---------:|:---------:|:---------:|:----------------:|-----------|-----------|-----------|:---------:|
-| opt-level          | O0               | O1        | O2        | O3        | Avg.      | O0               | O1        | O2        | O3        | Avg.      |
-| GPT4               | 0.92             | 0.94      | 0.88      | 0.84      | 0.895     | 0.1341           | 0.1890    | 0.1524    | 0.0854    | 0.1402    |
-| DeepSeek-Coder-33B |   0.0659         |   0.0866  |   0.1500  |   0.1463  |   0.1122  |   0.0000         |   0.0000  |   0.0000  |   0.0000  |   0.0000  |
-| LLM4Decompile-1b   |   0.8780         |   0.8732  |   0.8683  |   0.8378  |   0.8643  |   0.1573         |   0.0768  |   0.1000  |   0.0878  |   0.1055  |
-| LLM4Decompile-6b   |   0.8817         |   0.8951  |   0.8671  |   0.8476  |   0.8729  |   0.3000         |   0.1732  |   0.1988  |   0.1841  |   0.2140  |
-| LLM4Decompile-33b  |   0.8134         |   0.8195  |   0.8183  |   0.8305  |   0.8204  |   0.3049         |   0.1902  |   0.1817  |   0.1817  |   0.2146  |
+![Alt text](https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_decompile.png)
 
 
 
