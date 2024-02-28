@@ -5,8 +5,6 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 LLM4Decompile aims to decompile x86 assembly instructions into C. It is finetuned from Deepseek-Coder on 2B tokens of assembly-C pairs compiled from AnghaBench.
 
-- **Github Repository:** [LLM4Compile](https://github.com/albertan017/LLM4Decompile)
-
 
 ### 2. Evaluation Results
 | Model              | Re-compilability |           |           |           |           | Re-executability |           |           |           |           |
@@ -76,9 +74,7 @@ c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
 ### 4. License
-This code repository is licensed under the MIT License. The use of DeepSeek Coder models is subject to the Model License. DeepSeek Coder supports commercial use.
-
-See the [LICENSE-MODEL](https://github.com/deepseek-ai/deepseek-coder/blob/main/LICENSE-MODEL) for more details.
+This code repository is licensed under the MIT License.
 
 ### 5. Contact
 
