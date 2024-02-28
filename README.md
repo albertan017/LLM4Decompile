@@ -86,6 +86,19 @@ c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
 ## 4. How to use Decompile-Eval
+Data are stored in ``llm4decompile/decompile-eval/*.json``, using JSON list format. There are five keys:
+
+*   ``task_id``: indicates the ID of the problem.
+*   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
+*   ``c_func``: C solution for HumanEval problem. 
+*   ``c_test``: C test assertions.
+*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our preprocessing sample [preprocess]().
+
+To run the evaluation on Single GPU:
+```python
+on going
+```
+To run the evaluation using TGI:
 ```python
 on going
 ```
