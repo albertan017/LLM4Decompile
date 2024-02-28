@@ -32,7 +32,7 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 [llm4decompile-33b](https://huggingface.co/arise-sustech/llm4decompile-33b)
 
 Here give an example of how to use our model.
-First compile the C code into binary, disassemble the binary into assembly instructions:
+**Preprocessing:** compile the C code into binary, disassemble the binary into assembly instructions.
 ```python
 import subprocess
 import os
@@ -41,8 +41,8 @@ import re
 digit_pattern = r'\b0x[a-fA-F0-9]+\b'# binary codes in Hexadecimal
 zeros_pattern = r'^0+\s'#0s
 OPT = ["O0", "O1", "O2", "O3"]
-before = f"# This is the assembly code with {opt_state} optimization:\n"
-after = "\n# What is the source code?\n"
+before = f"# This is the assembly code with {opt_state} optimization:\n"#prompt
+after = "\n# What is the source code?\n"#prompt
 fileName = 'path/to/file'
 with open(fileName+'.c','r') as f:#original file
     c_func = f.read()
@@ -92,7 +92,7 @@ Data are stored in ``llm4decompile/decompile-eval/*.json``, using JSON list form
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
 *   ``c_func``: C solution for HumanEval problem. 
 *   ``c_test``: C test assertions.
-*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our preprocessing sample [preprocess](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
+*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing sample](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
 
 To run the evaluation on Single GPU:
 ```python
