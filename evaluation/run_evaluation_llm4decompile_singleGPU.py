@@ -95,7 +95,7 @@ for idx in trange(len(data_all)):
     input_asm_prompt = before+input_asm_prompt.strip()+after
     inputs = tokenizer(input_asm_prompt, return_tensors="pt").to(model.device)
     with torch.no_grad():
-        outputs = model.generate(**inputs, max_new_tokens=200)
+        outputs = model.generate(**inputs, max_new_tokens=512)
     c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
     flag_compile,flag_run = evaluate_func(c_func,c_test,c_func_decompile)
     num_compile[opt_state]+=flag_compile
