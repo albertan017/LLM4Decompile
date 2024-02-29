@@ -94,11 +94,13 @@ Data are stored in ``llm4decompile/decompile-eval/decompile-eval.json``, using J
 *   ``c_test``: C test assertions.
 *   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
 
-To run the evaluation on Single GPU:
-```python
-on going
+To run the evaluation on Single GPU and single process:
+```bash
+cd LLM4Decompile
+python ./evaluation/run_evaluation_llm4decompile_singleGPU.py
 ```
-To run the evaluation using TGI:
+
+To run the evaluation using TGI (+10x faster, support multiple GPUs and multi-process):
 First, please install the text-generation-inference following the official [link](https://github.com/huggingface/text-generation-inference)
 ```bash
 git clone https://github.com/albertan017/LLM4Decompile.git
