@@ -86,7 +86,7 @@ c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
 ## 4. How to use Decompile-Eval
-Data are stored in ``llm4decompile/decompile-eval/*.json``, using JSON list format. There are five keys:
+Data are stored in ``llm4decompile/decompile-eval/decompile-eval.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
 *   ``task_id``: indicates the ID of the problem.
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
