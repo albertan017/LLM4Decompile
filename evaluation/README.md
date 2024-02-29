@@ -1,4 +1,4 @@
-To run the evaluation on Single GPU and single process:
+To run the evaluation on single GPU and single process:
 ```bash
 cd LLM4Decompile
 python ./evaluation/run_evaluation_llm4decompile_singleGPU.py
