@@ -1,4 +1,4 @@
-# LLM4Decompile
+<img width="866" alt="image" src="https://github.com/albertan017/LLM4Decompile/assets/142430876/0ebb6efa-772c-457e-b384-0d6df1ed92f2"># LLM4Decompile
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## 1. Introduction of LLM4Decompile and Decompile-Eval
@@ -124,3 +124,6 @@ This code repository is licensed under the MIT License.
 ## 7. Contact
 
 If you have any questions, please raise an issue.
+
+## 8. Thoughts
+We find the discussion of lm decompiler around one year ago on [Reddit](https://www.reddit.com/r/MachineLearning/comments/123asbg/d_can_we_train_a_decompiler/) very interesting.
