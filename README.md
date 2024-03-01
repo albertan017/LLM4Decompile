@@ -31,6 +31,10 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 
 [llm4decompile-33b](https://huggingface.co/arise-sustech/llm4decompile-33b)
 
+[llm4decompile-6.7b-nsp](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp)
+
+Note: The NSP model is trained with assembly code, the average re-executability is arond 0.17.
+
 Here give an example of how to use our model.
 
 **Preprocessing:** compile the C code into binary, disassemble the binary into assembly instructions.
