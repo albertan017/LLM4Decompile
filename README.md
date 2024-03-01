@@ -126,4 +126,5 @@ This code repository is licensed under the MIT License.
 If you have any questions, please raise an issue.
 
 ## 8. Thoughts
-We find the discussion of lm decompiler around one year ago on [Reddit](https://www.reddit.com/r/MachineLearning/comments/123asbg/d_can_we_train_a_decompiler/) very interesting.
+
+The conversation about the language model decompiler that took place on [Reddit](https://www.reddit.com/r/MachineLearning/comments/123asbg/d_can_we_train_a_decompiler/) roughly a year ago was quite fascinating to us.
