@@ -1,4 +1,4 @@
-<img width="866" alt="image" src="https://github.com/albertan017/LLM4Decompile/assets/142430876/0ebb6efa-772c-457e-b384-0d6df1ed92f2"># LLM4Decompile
+# LLM4Decompile
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## 1. Introduction of LLM4Decompile and Decompile-Eval
