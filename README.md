@@ -128,3 +128,15 @@ If you have any questions, please raise an issue.
 ## 8. Thoughts
 
 The conversation about the language model decompiler that took place on [Reddit](https://www.reddit.com/r/MachineLearning/comments/123asbg/d_can_we_train_a_decompiler/) roughly a year ago was quite fascinating to us.
+
+## 9. Citation
+```
+@misc{tan2024llm4decompile,
+      title={LLM4Decompile: Decompiling Binary Code with Large Language Models}, 
+      author={Hanzhuo Tan and Qi Luo and Jing Li and Yuqun Zhang},
+      year={2024},
+      eprint={2403.05286},
+      archivePrefix={arXiv},
+      primaryClass={cs.PL}
+}
+```
