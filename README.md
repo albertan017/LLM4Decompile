@@ -1,6 +1,8 @@
 # LLM4Decompile
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
+For more details check out the [paper](https://arxiv.org/abs/2403.05286).
+
 ## 1. Introduction of LLM4Decompile and Decompile-Eval
 Our objective is to create and release the first open-source LLM dedicated to decompilation, and to assess its capabilities by constructing the first decompilation benchmark focused on re-compilability and re-executable. 
 
