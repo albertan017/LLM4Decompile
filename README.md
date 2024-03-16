@@ -3,6 +3,9 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 For more details check out the [paper](https://arxiv.org/abs/2403.05286).
 
+## 0. Updates
+**2023.03.16** Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21.
+
 ## 1. Introduction of LLM4Decompile and Decompile-Eval
 Our objective is to create and release the first open-source LLM dedicated to decompilation, and to assess its capabilities by constructing the first decompilation benchmark focused on re-compilability and re-executable. 
 
@@ -35,7 +38,11 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 
 [llm4decompile-6.7b-nsp](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp)
 
+[llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)
+
 Note: The NSP model is trained with assembly code, the average re-executability is arond 0.17.
+
+Note: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
 Here give an example of how to use our model.
 
