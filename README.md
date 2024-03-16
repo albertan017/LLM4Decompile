@@ -67,7 +67,8 @@ for opt_state in OPT:
     subprocess.run(compile_command, shell=True, check=True)
     
     input_asm = ''
-    asm = read_file(output_file+'.s')
+    with open(output_file+'.s') as f:#asm file
+        asm= f.read()
     asm = asm.split('Disassembly of section .text:')[-1].strip()
     for tmp in asm.split('\n'):
         tmp_asm = tmp.split('\t')[-1]#remove the binary code
