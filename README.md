@@ -86,8 +86,8 @@ model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat
 with open(fileName +'_' + opt_state +'.asm','r') as f:#original file
     asm_func = f.read()
 inputs = tokenizer(asm_func, return_tensors="pt").to(model.device)
-    with torch.no_grad():
-        outputs = model.generate(**inputs, max_new_tokens=200)
+with torch.no_grad():
+    outputs = model.generate(**inputs, max_new_tokens=200)
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
