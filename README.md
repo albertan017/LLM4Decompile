@@ -128,7 +128,7 @@ bash ./scripts/run_evaluation_llm4decompile.sh
 ## 5. On Going
 LLM4Binary: We plan to include larger dataset to pre-train the model with assembly code and C code.
 
-Decompiler-ALL: Support mroe languages/platforms and settings (e.g., decompile multiple functions).
+Decompiler-ALL: Support popular languages/platforms and settings (e.g., decompile multiple functions).
 
 ## 6. License
 This code repository is licensed under the MIT License.
