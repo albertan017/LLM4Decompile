@@ -1,22 +1,25 @@
 # LLM4Decompile
-Reverse Engineering: Decompiling Binary Code with Large Language Models
 
-For more details check out the [paper](https://arxiv.org/abs/2403.05286).
-
-## 0. Updates
-**2023.03.16** Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21.
-
-## 1. Introduction of LLM4Decompile and Decompile-Eval
-Our objective is to create and release the first open-source LLM dedicated to decompilation, and to assess its capabilities by constructing the first decompilation benchmark focused on re-compilability and re-executable. 
-
-We start by compiling a million C code samples from [AnghaBench](https://github.com/brenocfg/AnghaBench) into assembly code using GCC with different configurations, forming a dataset of assembly-source pairs in 4 billion tokens. We then finetune the DeepSeek-Coder model, a leading-edge code LLM, using this dataset. Followed by constructing the evaluation benchmark, Decompile-Eval, based on HumanEval questions and test samples. Specifically, we formulate the evaluation from two perspectives: whether the decompiled code can recompile successfully, and whether it passes all assertions in the test cases. 
-
-Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its ability to be recompiled with the original GCC compiler (re-compilability) and for its functionality through test assertions (re-executability).
-<p align="center">
-<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/pipeline.png" alt="image" width="300" height="auto">
+<p align="left">
+    📊&nbsp;<a href="#evaluation-results">Results</a>
+    | 🤗&nbsp;<a href="#models">Models</a>
+    | 🚀&nbsp;<a href="#quick-start">Quick Start</a>
+    | 📚&nbsp;<a href="#decompile-eval">Decompile-Eval</a>
+    | 📎&nbsp;<a href="#citation">Citation</a>
+    | 📝&nbsp;<a href="https://arxiv.org/abs/2403.05286">Paper</a>
 </p>
 
-## 2. Evaluation Results
+Reverse Engineering: Decompiling Binary Code with Large Language Models
+
+## Updates
+* [2023-03-16] : Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21.
+
+## About
+* **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
+* **Decompile-Eval** is the first decompilation benchmark focuses on assessing the re-compilability and re-executability aspects of decompiled code. It is the C language adaptation of the HumanEval dataset, provides a suite of C solutions and assertions in evaluating the practical utility of decompiled code.
+
+
+## Evaluation Results
 ### Metrics
 **Re-compilability** and **re-executability** serve as critical indicators in validating the effectiveness of a decompilation process. When decompiled code can be recompiled, it provides strong evidence of syntactic integrity. It ensures that the decompiled code is not just readable, but also adheres to the structural and syntactical standards expected by the compiler. 
 However, syntax alone does not guarantee semantic equivalence to the original pre-compiled program. Re-executability provides this critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
@@ -27,7 +30,7 @@ Together, re-compilability and re-executability indicate syntax recovery and sem
 
 
 
-## 3. How to Use The Model
+## Models
 Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion parameters, and we have made these models available on Hugging Face.
 
 [llm4decompile-1.3b](https://huggingface.co/arise-sustech/llm4decompile-1.3b)
@@ -44,6 +47,8 @@ Note: The NSP model is trained with assembly code, the average re-executability 
 
 Note: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
+
+## Quick Start
 Here give an example of how to use our model.
 
 **Preprocessing:** compile the C code into binary, disassemble the binary into assembly instructions.
@@ -99,7 +104,7 @@ with torch.no_grad():
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
-## 4. How to use Decompile-Eval
+## Decompile-Eval
 Data are stored in ``llm4decompile/decompile-eval/decompile-eval.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
 *   ``task_id``: indicates the ID of the problem.
@@ -125,23 +130,23 @@ pip install -r requirements.txt
 bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 
-## 5. On Going
+## On Going
 LLM4Binary: We plan to include larger dataset to pre-train the model with assembly code and C code.
 
 Decompiler-ALL: Support popular languages/platforms and settings (e.g., decompile multiple functions).
 
-## 6. License
+## License
 This code repository is licensed under the MIT License.
 
-## 7. Contact
+## Contact
 
 If you have any questions, please raise an issue.
 
-## 8. Thoughts
+## Thoughts
 
 The conversation about the language model decompiler that took place on [Reddit](https://www.reddit.com/r/MachineLearning/comments/123asbg/d_can_we_train_a_decompiler/) roughly a year ago was quite fascinating to us.
 
-## 9. Citation
+## Citation
 ```
 @misc{tan2024llm4decompile,
       title={LLM4Decompile: Decompiling Binary Code with Large Language Models}, 
