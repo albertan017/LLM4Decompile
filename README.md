@@ -12,7 +12,7 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-03-16] : Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21.
+* [2023-03-16] : Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.219, performs the best in our models.
 
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
@@ -28,27 +28,30 @@ Re-compilability and re-executability serve as critical indicators in validating
 However, syntax alone does not guarantee semantic equivalence to the original pre-compiled program. Re-executability provides this critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
 Together, re-compilability and re-executability indicate syntax recovery and semantic preservation - both essential for usable and robust decompilation.
 
+<p align="center">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/pipeline.png" alt="image" width="300" height="auto">
+</p>
+
+Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its ability to be recompiled with the original GCC compiler (re-compilability) and for its functionality through test assertions (re-executability).
+
 ### Results
 ![Alt text](https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_decompile.png)
-
-
 
 ## Models
 Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion parameters, and we have made these models available on Hugging Face.
 
-[llm4decompile-1.3b](https://huggingface.co/arise-sustech/llm4decompile-1.3b)
+| Model                 | Checkpoint                                                        | Size | Re-executability       | Note |
+|-----------------------|-------------------------------------------------------------------|------|---------------------|----------------------|
+| llm4decompile-1.3b     | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-1.3b)     | 1.3B | 10.6%   |-|
+| llm4decompile-6.7b     | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b)     | 6.7B | 21.4%   |-|
+| llm4decompile-33b      | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-33b)      | 33B  | 21.5%   |-|
+| llm4decompile-6.7b-nsp | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp) | 6.7B | 20.9%   | Note 1 |
+| llm4decompile-6.7b-uo   | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | **21.9%**   | Note 2 |
 
-[llm4decompile-6.7b](https://huggingface.co/arise-sustech/llm4decompile-6.7b)
 
-[llm4decompile-33b](https://huggingface.co/arise-sustech/llm4decompile-33b)
+Note 1: The NSP model is trained with assembly code, the average re-executability is arond 0.17.
 
-[llm4decompile-6.7b-nsp](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp)
-
-[llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)
-
-Note: The NSP model is trained with assembly code, the average re-executability is arond 0.17.
-
-Note: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
+Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
 
 ## Quick Start
