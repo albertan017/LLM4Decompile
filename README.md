@@ -12,7 +12,7 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-03-16] : Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.219, performs the best in our models.
+* [2023-03-16] : Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
@@ -49,9 +49,9 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 | llm4decompile-6.7b-uo   | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | **21.9%**   | Note 2 |
 
 
-Note 1: The NSP model is trained with assembly code, the average re-executability is arond 0.17.
+Note 1: The NSP model is trained with assembly code, the average re-executability is around 0.17.
 
-Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
+Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
 
 ## Quick Start
