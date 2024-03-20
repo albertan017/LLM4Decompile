@@ -21,7 +21,10 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Evaluation Results
 ### Metrics
-**Re-compilability** and **re-executability** serve as critical indicators in validating the effectiveness of a decompilation process. When decompiled code can be recompiled, it provides strong evidence of syntactic integrity. It ensures that the decompiled code is not just readable, but also adheres to the structural and syntactical standards expected by the compiler. 
+* **Re-compilability** assesses if the decompiled code can successfully be recompiled with the original compiler settings and configurations.
+* **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
+
+Re-compilability and re-executability serve as critical indicators in validating the effectiveness of a decompilation process. When decompiled code can be recompiled, it provides strong evidence of syntactic integrity. It ensures that the decompiled code is not just readable, but also adheres to the structural and syntactical standards expected by the compiler. 
 However, syntax alone does not guarantee semantic equivalence to the original pre-compiled program. Re-executability provides this critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
 Together, re-compilability and re-executability indicate syntax recovery and semantic preservation - both essential for usable and robust decompilation.
 
@@ -136,7 +139,7 @@ LLM4Binary: We plan to include larger dataset to pre-train the model with assemb
 Decompiler-ALL: Support popular languages/platforms and settings (e.g., decompile multiple functions).
 
 ## License
-This code repository is licensed under the MIT License.
+This code repository is licensed under the MIT and DeepSeek License.
 
 ## Contact
 
