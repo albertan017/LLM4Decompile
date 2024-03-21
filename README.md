@@ -35,7 +35,10 @@ Together, re-compilability and re-executability indicate syntax recovery and sem
 Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its ability to be recompiled with the original GCC compiler (re-compilability) and for its functionality through test assertions (re-executability).
 
 ### Results
-![Alt text](https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_decompile.png)
+
+<p align="center">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_decompile.png" alt="results" width="800" height="auto">
+</p>
 
 ## Models
 Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion parameters, and we have made these models available on Hugging Face.
