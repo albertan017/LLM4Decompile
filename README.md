@@ -12,11 +12,11 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-03-16] : Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.219, performs the best in our models.
+* [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
-* **Decompile-Eval** is the first decompilation benchmark focuses on assessing the re-compilability and re-executability aspects of decompiled code. It is the C language adaptation of the HumanEval dataset, provides a suite of C solutions and assertions in evaluating the practical utility of decompiled code.
+* **Decompile-Eval** is the first decompilation benchmark that focuses on assessing the re-compilability and re-executability aspects of decompiled code. It is the C language adaptation of the HumanEval dataset and provides a suite of C solutions and assertions in evaluating the practical utility of decompiled code.
 
 
 ## Evaluation Results
@@ -46,18 +46,18 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 | llm4decompile-6.7b     | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b)     | 6.7B | 21.4%   |-|
 | llm4decompile-33b      | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-33b)      | 33B  | 21.5%   |-|
 | llm4decompile-6.7b-nsp | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp) | 6.7B | 20.9%   | Note 1 |
-| llm4decompile-6.7b-uo   | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | **21.9%**   | Note 2 |
+| llm4decompile-6.7b-uo  | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | **21.9%**   | Note 2 |
 
 
-Note 1: The NSP model is trained with assembly code, the average re-executability is arond 0.17.
+Note 1: The NSP model is trained with assembly code, the average re-executability is around 0.17.
 
-Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is arond 0.21. The pre-processing of UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
+Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.21. The pre-processing of the UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
 
 ## Quick Start
-Here give an example of how to use our model.
+Here is an example of how to use our model.
 
-**Preprocessing:** compile the C code into binary, disassemble the binary into assembly instructions.
+**Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
 ```python
 import subprocess
 import os
@@ -93,7 +93,7 @@ for opt_state in OPT:
         f.write(input_asm_prompt)
 ```
 
-**Decompilation:** use LLM4Decompile to translate the assembly instructions into C:
+**Decompilation:** Use LLM4Decompile to translate the assembly instructions into C:
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
@@ -119,7 +119,7 @@ Data are stored in ``llm4decompile/decompile-eval/decompile-eval.json``, using J
 *   ``c_test``: C test assertions.
 *   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
 
-To run the evaluation on single GPU and single process:
+To run the evaluation on a single GPU and single process:
 ```bash
 cd LLM4Decompile
 python ./evaluation/run_evaluation_llm4decompile_singleGPU.py
@@ -132,25 +132,18 @@ git clone https://github.com/albertan017/LLM4Decompile.git
 cd LLM4Decompile
 pip install -r requirements.txt
 
-# Before run the evaluation script, plase update the model_path to your local mdoel path.
+# Before running the evaluation script, please update the model_path to your local model path.
 bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 
 ## On Going
-LLM4Binary: We plan to include larger dataset to pre-train the model with assembly code and C code.
-
-Decompiler-ALL: Support popular languages/platforms and settings (e.g., decompile multiple functions).
+* Larger training dataset with the cleaning process.
+* Support for popular languages/platforms and settings.
+* Support for executable binaries.
+* Integration with decompilation tools (e.g., Ghidra, Rizin)
 
 ## License
 This code repository is licensed under the MIT and DeepSeek License.
-
-## Contact
-
-If you have any questions, please raise an issue.
-
-## Thoughts
-
-The conversation about the language model decompiler that took place on [Reddit](https://www.reddit.com/r/MachineLearning/comments/123asbg/d_can_we_train_a_decompiler/) roughly a year ago was quite fascinating to us.
 
 ## Citation
 ```
