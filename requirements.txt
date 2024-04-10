@@ -1,5 +1,7 @@
 tqdm
-transformers=4.34.1
+transformers
 loguru
 tqdm
 text_generation
+vllm
+flash-attn
