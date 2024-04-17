@@ -159,3 +159,7 @@ This code repository is licensed under the MIT and DeepSeek License.
       primaryClass={cs.PL}
 }
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=albertan017/LLM4Decompile&type=Timeline)](https://star-history.com/#albertan017/LLM4Decompile&Timeline)

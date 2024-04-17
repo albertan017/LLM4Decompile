@@ -22,10 +22,13 @@ def parse_args() -> ArgumentParser:
     parser.add_argument("--model_path", type=str)
     parser.add_argument("--gpus", type=int, default=8)
     parser.add_argument("--max_num_seqs", type=int, default=8)
-    parser.add_argument("--max_total_tokens", type=int, default=8512)
+    parser.add_argument("--gpu_memory_utilization", type=float, default=0.82)
+    parser.add_argument("--temperature", type=float, default=0)
+    parser.add_argument("--max_total_tokens", type=int, default=8192)
     parser.add_argument("--max_new_tokens", type=int, default=512)
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--testset_path", type=str)
+    parser.add_argument("--output_path", type=str, default=None)
     parser.add_argument("--num_workers", type=int, default=16)
     return parser.parse_args()
 
@@ -37,6 +40,7 @@ def evaluate_func(params):
         params["c_func_decompile"],
     )
 
+    timeout = 10
     flag_compile = 0
     flag_run = 0
     c_include = ""
@@ -64,32 +68,40 @@ def evaluate_func(params):
             f.write(c_onlyfunc)
 
         # Compile the C program to an assembly
-        compile_command = f"gcc -S {c_file_onlyfunc} -o {executable_onlyfunc} -lm"
+        compile_command = [
+            "gcc",
+            "-S",
+            c_file_onlyfunc,
+            "-o",
+            executable_onlyfunc,
+            "-lm",
+        ]
         try:
-            subprocess.run(compile_command, shell=True, check=True)
+            subprocess.run(compile_command, check=True, timeout=timeout)
             flag_compile = 1
         except:
             return flag_compile, flag_run
 
         # Compile the C program to an executable
-        compile_command = f"gcc {c_file} -o {executable} -lm"
+        compile_command = ["gcc", c_file, "-o", executable, "-lm"]
         try:
-            subprocess.run(compile_command, shell=True, check=True)
+            subprocess.run(compile_command, check=True, timeout=timeout)
             flag_compile = 1
         except:
             return flag_compile, flag_run
 
         # Run the compiled executable
-        run_command = executable
+        run_command = [executable]
         try:
             process = subprocess.run(
-                run_command, shell=True, check=True, capture_output=True, timeout=5
+                run_command, capture_output=True, text=True, timeout=timeout, check=True
             )
             flag_run = 1
-        except subprocess.CalledProcessError as e:
-            pass
-        except Exception as e:
-            pass
+        except:
+            if "process" in locals() and process:
+                process.kill()
+                process.wait()
+            return flag_compile, flag_run
 
     return flag_compile, flag_run
 
@@ -109,6 +121,9 @@ def decompile_pass_rate(testsets, gen_results_repeat, opts, args):
             ]
 
             eval_results = list(tqdm(pool.imap(evaluate_func, tasks), total=len(tasks)))
+
+        pool.terminate()
+        pool.join()
 
         stats = {opt: {"compile": 0, "run": 0, "total": 0} for opt in opts}
         for idx, (testset, output, flag) in enumerate(
@@ -169,16 +184,14 @@ def run_eval_pipeline(args: ArgumentParser) -> int:
         stop_sequences = [tokenizer.eos_token]
 
         opts = {
-            "O0": "# This is the assembly code with O0 optimization:\n",
-            "O1": "# This is the assembly code with O1 optimization:\n",
-            "O2": "# This is the assembly code with O2 optimization:\n",
-            "O3": "# This is the assembly code with O3 optimization:\n",
+            "O0": "# This is the assembly code:\n",
+            "O1": "# This is the assembly code:\n",
+            "O2": "# This is the assembly code:\n",
+            "O3": "# This is the assembly code:\n",
         }
 
-        after = "\n\n" + "# What is the source code?\n"
-
+        after = "\n# What is the source code?\n"
         inputs = []
-
         for testset in testsets:
             input_asm_prompt = testset["input_asm_prompt"]
             opt = testset["type"]
@@ -189,11 +202,14 @@ def run_eval_pipeline(args: ArgumentParser) -> int:
             model=args.model_path,
             tensor_parallel_size=args.gpus,
             max_model_len=args.max_total_tokens,
-            max_num_seqs=args.max_num_seqs,
+            # max_num_seqs=args.max_num_seqs,
+            gpu_memory_utilization=args.gpu_memory_utilization,
         )
 
         sampling_params = SamplingParams(
-            temperature=0, max_tokens=args.max_new_tokens, stop=stop_sequences
+            temperature=args.temperature,
+            max_tokens=args.max_new_tokens,
+            stop=stop_sequences,
         )
 
         gen_results_repeat = []
@@ -214,8 +230,9 @@ def run_eval_pipeline(args: ArgumentParser) -> int:
         testset["output"] = res[0]
         save_data.append(testset)
 
-    with open("gen_result.json", "w") as f:
-        json.dump(save_data, f, indent=4, ensure_ascii=True)
+    if args.output_path:
+        with open(args.output_path, "w") as f:
+            json.dump(save_data, f, indent=4, ensure_ascii=True)
 
     ret = decompile_pass_rate(testsets, gen_results_repeat, opts, args)
     return ret

@@ -10,6 +10,7 @@ from pathlib import Path
 import sys
 from tqdm import tqdm
 from server.text_generation import TextGenerationServer, TextGenerationClient
+import tempfile
 import multiprocessing
 
 logger.add(sys.stdout, colorize=False, format="{time} {level} {message}")
@@ -38,7 +39,7 @@ def evaluate_func(params):
         params["c_func_decompile"],
     )
 
-    folder = "./"
+    timeout=10
     flag_compile = 0
     flag_run = 0
     c_include = ""
@@ -53,61 +54,53 @@ def evaluate_func(params):
     c_combine = c_include + "\n" + c_func_decompile + "\n" + c_test
     c_onlyfunc = c_include + "\n" + c_func_decompile
 
-    pid = os.getpid()
-    # Define the C file and executable names
-    c_file = os.path.join(folder, f"combine_{pid}.c")
-    executable = os.path.join(folder, f"combine_{pid}")
-    c_file_onlyfunc = os.path.join(folder, f"onlyfunc_{pid}.c")
-    executable_onlyfunc = os.path.join(folder, f"onlyfunc_{pid}")
+    with tempfile.TemporaryDirectory() as temp_dir:
+        pid = os.getpid()
+        c_file = os.path.join(temp_dir, f"combine_{pid}.c")
+        executable = os.path.join(temp_dir, f"combine_{pid}")
+        c_file_onlyfunc = os.path.join(temp_dir, f"onlyfunc_{pid}.c")
+        executable_onlyfunc = os.path.join(temp_dir, f"onlyfunc_{pid}")
 
-    if os.path.exists(executable):
-        os.remove(executable)
-    if os.path.exists(executable_onlyfunc):
-        os.remove(executable_onlyfunc)
+        with open(c_file, "w") as f:
+            f.write(c_combine)
+        with open(c_file_onlyfunc, "w") as f:
+            f.write(c_onlyfunc)
 
-    with open(c_file, "w") as f:
-        f.write(c_combine)
-    with open(c_file_onlyfunc, "w") as f:
-        f.write(c_onlyfunc)
+        # Compile the C program to an assembly
+        compile_command = [
+            "gcc",
+            "-S",
+            c_file_onlyfunc,
+            "-o",
+            executable_onlyfunc,
+            "-lm",
+        ]
+        try:
+            subprocess.run(compile_command, check=True, timeout=timeout)
+            flag_compile = 1
+        except:
+            return flag_compile, flag_run
 
-    # Compile the C program to an assembly
-    compile_command = f"gcc -S {c_file_onlyfunc} -o {executable_onlyfunc} -lm"
-    try:
-        subprocess.run(compile_command, shell=True, check=True)
-        flag_compile = 1
-    except:
-        return flag_compile, flag_run
-    finally:
-        if os.path.exists(c_file_onlyfunc):
-            os.remove(c_file_onlyfunc)
-        if os.path.exists(executable_onlyfunc):
-            os.remove(executable_onlyfunc)
+        # Compile the C program to an executable
+        compile_command = ["gcc", c_file, "-o", executable, "-lm"]
+        try:
+            subprocess.run(compile_command, check=True, timeout=timeout)
+            flag_compile = 1
+        except:
+            return flag_compile, flag_run
 
-    # Compile the C program to an executable
-    compile_command = f"gcc {c_file} -o {executable} -lm"
-    try:
-        subprocess.run(compile_command, shell=True, check=True)
-        flag_compile = 1
-    except:
-        return flag_compile, flag_run
-    finally:
-        if os.path.exists(c_file):
-            os.remove(c_file)
-
-    # Run the compiled executable
-    run_command = f"{executable}"
-    try:
-        process = subprocess.run(
-            run_command, shell=True, check=True, capture_output=True, timeout=5
-        )
-        flag_run = 1
-    except subprocess.CalledProcessError as e:
-        pass
-    except Exception as e:
-        pass
-    finally:
-        if os.path.exists(executable):
-            os.remove(executable)
+        # Run the compiled executable
+        run_command = [executable]
+        try:
+            process = subprocess.run(
+                run_command, capture_output=True, text=True, timeout=timeout, check=True
+            )
+            flag_run = 1
+        except:
+            if 'process' in locals() and process:
+                process.kill()
+                process.wait()
+            return flag_compile, flag_run
 
     return flag_compile, flag_run
 
@@ -128,6 +121,9 @@ def decompile_pass_rate(testsets, gen_results_repeat, opts, args):
 
             eval_results = list(tqdm(pool.imap(evaluate_func, tasks), total=len(tasks)))
 
+        pool.terminate()
+        pool.join()
+        
         stats = {opt: {"compile": 0, "run": 0, "total": 0} for opt in opts}
         for idx, (testset, output, flag) in enumerate(
             tqdm(

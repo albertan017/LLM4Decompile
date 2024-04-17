@@ -27,6 +27,12 @@ cd evaluation
 python run_evaluation_llm4decompile_vllm.py \
   --model_path arise-sustech/llm4decompile-1.3b \
   --testset_path ../decompile-eval/decompile-eval.json \
-  --gpus 4 
+  --gpus 8 \
+  --max_total_tokens 8192 \
+  --max_new_tokens 512 \
+  --repeat 1 \
+  --num_workers 16 \
+  --gpu_memory_utilization 0.82 \
+  --temperature 0 
 ```
 
