@@ -90,6 +90,8 @@ for opt_state in OPT:
         asm_clean = ""
         asm_sp = asm.split("\n")
         for tmp in asm_sp:
+            if len(tmp.split("\t"))<3 and '00' in tmp:
+                continue
             idx = min(
                 len(tmp.split("\t")) - 1, 2
             )
