@@ -52,8 +52,8 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 | llm4decompile-33b      | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-33b)      | 33B  | 21.5%   |-|
 | llm4decompile-6.7b-nsp | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp) | 6.7B | 20.9%   | Note 1 |
 | llm4decompile-6.7b-uo  | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | 21.9%   | Note 2 |
-| llm4decompile-1.3b-v1.5| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.5)   | 1.3B | 29.7%   | Note 3 |
-| llm4decompile-6.7b-v1.5| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5)   | 6.7B | **47.7%**   | Note 3 |
+| **llm4decompile-1.3b-v1.5**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.5)   | 1.3B | **29.7%**   | Note 3 |
+| **llm4decompile-6.7b-v1.5**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5)   | 6.7B | **47.7%**   | Note 3 |
 
 
 Note 1: The NSP model is trained with assembly code, the average re-executability is around 0.17.
