@@ -113,12 +113,18 @@ model_path = 'LLM4Binary/llm4decompile-6.7b-v1.5' # V1.5 Model
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat16).cuda()
 
-with open(fileName +'_' + opt_state +'.asm','r') as f:#original file
+with open(fileName +'_' + OPT[0] +'.asm','r') as f:#optimization level O0
     asm_func = f.read()
 inputs = tokenizer(asm_func, return_tensors="pt").to(model.device)
 with torch.no_grad():
     outputs = model.generate(**inputs, max_new_tokens=4000)
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
+
+with open(fileName +'.c','r') as f:#original file
+    func = f.read()
+
+print(f'original function:\n{func}')# Note we only decompile one function, where the original file may contain multiple functions
+print(f'decompiled function:\n{c_func_decompile}')
 ```
 
 ## HumanEval-Decompile
