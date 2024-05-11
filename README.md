@@ -12,7 +12,7 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-05-10]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset and with a maximum token size of **4,000**, which greatly enhances performance (up to **100%**) compared to the previous model.
+* [2023-05-10]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset and with a maximum token **length of 4,000**, which greatly enhances **performance** (up to **100%**) compared to the previous model.
 * [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
