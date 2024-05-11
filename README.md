@@ -12,7 +12,7 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-05-10]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset and with a maximum token **length of 4,000**, which greatly enhances **performance** (up to **100%**) compared to the previous model.
+* [2023-05-10]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset and with a maximum token **length of 4,096**, which greatly enhances **performance** (up to **100%**) compared to the previous model.
 * [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
@@ -60,7 +60,7 @@ Note 1: The NSP model is trained with assembly code, the average re-executabilit
 
 Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.21. The pre-processing of the UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
-Note 3: V1.5 are trained with a larger dataset (4 Million) and with a maximum token size of 4,000, which greatly enhances performance (up to 100%) compared to the previous model.
+Note 3: V1.5 are trained with a larger dataset (4 Million) and with a maximum token size of 4,096, which greatly enhances performance (up to 100%) compared to the previous model.
 
 ## Quick Start
 Here is an example of how to use our model (Revised for V1.5).
@@ -117,7 +117,7 @@ with open(fileName +'_' + OPT[0] +'.asm','r') as f:#optimization level O0
     asm_func = f.read()
 inputs = tokenizer(asm_func, return_tensors="pt").to(model.device)
 with torch.no_grad():
-    outputs = model.generate(**inputs, max_new_tokens=4000)
+    outputs = model.generate(**inputs, max_new_tokens=2048)### max length to 4096, max new tokens should be below the range
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 
 with open(fileName +'.c','r') as f:#original file
