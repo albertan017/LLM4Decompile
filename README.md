@@ -72,9 +72,7 @@ import subprocess
 import os
 
 OPT = ["O0", "O1", "O2", "O3"]
-fileName = 'path/to/file'
-with open(fileName+'.c','r') as f:#original file
-    c_func = f.read()
+fileName = 'samples/sample' #'path/to/file'
 for opt_state in OPT:
     output_file = fileName +'_' + opt_state
     input_file = fileName+'.c'
@@ -119,7 +117,7 @@ with open(fileName +'_' + opt_state +'.asm','r') as f:#original file
     asm_func = f.read()
 inputs = tokenizer(asm_func, return_tensors="pt").to(model.device)
 with torch.no_grad():
-    outputs = model.generate(**inputs, max_new_tokens=500)
+    outputs = model.generate(**inputs, max_new_tokens=4000)
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
