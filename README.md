@@ -4,7 +4,7 @@
     📊&nbsp;<a href="#evaluation-results">Results</a>
     | 🤗&nbsp;<a href="#models">Models</a>
     | 🚀&nbsp;<a href="#quick-start">Quick Start</a>
-    | 📚&nbsp;<a href="#decompile-eval">Decompile-Eval</a>
+    | 📚&nbsp;<a href="#humaneval-decompile">HumanEval-Decompile</a>
     | 📎&nbsp;<a href="#citation">Citation</a>
     | 📝&nbsp;<a href="https://arxiv.org/abs/2403.05286">Paper</a>
 </p>
@@ -12,32 +12,34 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
+* [2023-05-10]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset and with a maximum token size of **4,000**, which greatly enhances performance (up to **100%**) compared to the previous model.
 * [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
-* **Decompile-Eval** is the first decompilation benchmark that focuses on assessing the re-compilability and re-executability aspects of decompiled code. It is the C language adaptation of the HumanEval dataset and provides a suite of C solutions and assertions in evaluating the practical utility of decompiled code.
+* **HumanEval-Decompile** is the first decompilation benchmark that focuses on assessing the re-executability aspects of decompiled code. It is the C language adaptation of the HumanEval dataset and provides a suite of C solutions and assertions in evaluating the practical utility of decompiled code.
 
 
 ## Evaluation Results
 ### Metrics
-* **Re-compilability** assesses if the decompiled code can successfully be recompiled with the original compiler settings and configurations.
 * **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
+Re-executability serves as critical indicator in validating the effectiveness of a decompilation process. Re-executability provides critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
 
-Re-compilability and re-executability serve as critical indicators in validating the effectiveness of a decompilation process. When decompiled code can be recompiled, it provides strong evidence of syntactic integrity. It ensures that the decompiled code is not just readable, but also adheres to the structural and syntactical standards expected by the compiler. 
-However, syntax alone does not guarantee semantic equivalence to the original pre-compiled program. Re-executability provides this critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
-Together, re-compilability and re-executability indicate syntax recovery and semantic preservation - both essential for usable and robust decompilation.
+### Benchmarks
+* **HumanEval-Decompile** Contains 164 functions that are only dependent on standard C libraries.
+* **ExeBench** Contains 2621 functions sampled from real projects, where the functions rely on user defined functions, structures, and macros.
+
 
 <p align="center">
 <img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/pipeline.png" alt="image" width="300" height="auto">
 </p>
 
-Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its ability to be recompiled with the original GCC compiler (re-compilability) and for its functionality through test assertions (re-executability).
+Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its functionality through test assertions (re-executability).
 
 ### Results
 
 <p align="center">
-<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_decompile.png" alt="results" width="800" height="auto">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_v1.5.png" alt="results" width="800" height="auto">
 </p>
 
 ## Models
@@ -49,16 +51,19 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 | llm4decompile-6.7b     | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b)     | 6.7B | 21.4%   |-|
 | llm4decompile-33b      | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-33b)      | 33B  | 21.5%   |-|
 | llm4decompile-6.7b-nsp | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-nsp) | 6.7B | 20.9%   | Note 1 |
-| llm4decompile-6.7b-uo  | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | **21.9%**   | Note 2 |
+| llm4decompile-6.7b-uo  | 🤗 [HF Link](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo)  | 6.7B | 21.9%   | Note 2 |
+| llm4decompile-1.3b-v1.5| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.5)   | 1.3B | 29.7%   | Note 3 |
+| llm4decompile-6.7b-v1.5| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5)   | 6.7B | **47.7%**   | Note 3 |
 
 
 Note 1: The NSP model is trained with assembly code, the average re-executability is around 0.17.
 
 Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.21. The pre-processing of the UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
+Note 3: V1.5 are trained with a larger dataset (4 Million) and with a maximum token size of 4,000, which greatly enhances performance (up to 100%) compared to the previous model.
 
 ## Quick Start
-Here is an example of how to use our model.
+Here is an example of how to use our model (TODO for V1.5).
 
 **Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
 ```python
@@ -113,7 +118,7 @@ with torch.no_grad():
 c_func_decompile = tokenizer.decode(outputs[0][len(inputs[0]):-1])
 ```
 
-## Decompile-Eval
+## HumanEval-Decompile
 Data are stored in ``llm4decompile/decompile-eval/decompile-eval.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
 *   ``task_id``: indicates the ID of the problem.
@@ -140,9 +145,9 @@ bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 
 ## On Going
-* Larger training dataset with the cleaning process.
+* Larger training dataset with the cleaning process. (done)
 * Support for popular languages/platforms and settings.
-* Support for executable binaries.
+* Support for executable binaries. (done)
 * Integration with decompilation tools (e.g., Ghidra, Rizin)
 
 ## License
