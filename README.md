@@ -148,9 +148,9 @@ bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 
 ## On Going
-* Larger training dataset with the cleaning process. (done)
+* Larger training dataset with the cleaning process. (done:2024.05.10)
 * Support for popular languages/platforms and settings.
-* Support for executable binaries. (done)
+* Support for executable binaries. (done:2024.05.10)
 * Integration with decompilation tools (e.g., Ghidra, Rizin)
 
 ## License
