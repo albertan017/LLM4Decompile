@@ -63,16 +63,14 @@ Note 2: The unified optimization (UO) model is trained without prior knowledge o
 Note 3: V1.5 are trained with a larger dataset (4 Million) and with a maximum token size of 4,000, which greatly enhances performance (up to 100%) compared to the previous model.
 
 ## Quick Start
-Here is an example of how to use our model (TODO for V1.5).
+Here is an example of how to use our model (Revised for V1.5).
+Note: **Replace** func0 with the function name you want to decompile.
 
 **Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
 ```python
 import subprocess
 import os
-import re
 
-digit_pattern = r'\b0x[a-fA-F0-9]+\b'# binary codes in Hexadecimal
-zeros_pattern = r'^0+\s'#0s
 OPT = ["O0", "O1", "O2", "O3"]
 fileName = 'path/to/file'
 with open(fileName+'.c','r') as f:#original file
@@ -80,7 +78,7 @@ with open(fileName+'.c','r') as f:#original file
 for opt_state in OPT:
     output_file = fileName +'_' + opt_state
     input_file = fileName+'.c'
-    compile_command = f'gcc -c -o {output_file}.o {input_file} -{opt_state} -lm'#compile the code with GCC on Linux
+    compile_command = f'gcc -o {output_file}.o {input_file} -{opt_state} -lm'#compile the code with GCC on Linux
     subprocess.run(compile_command, shell=True, check=True)
     compile_command = f'objdump -d {output_file}.o > {output_file}.s'#disassemble the binary file into assembly instructions
     subprocess.run(compile_command, shell=True, check=True)
@@ -88,13 +86,20 @@ for opt_state in OPT:
     input_asm = ''
     with open(output_file+'.s') as f:#asm file
         asm= f.read()
-    asm = asm.split('Disassembly of section .text:')[-1].strip()
-    for tmp in asm.split('\n'):
-        tmp_asm = tmp.split('\t')[-1]#remove the binary code
-        tmp_asm = tmp_asm.split('#')[0].strip()#remove the comments
-        input_asm+=tmp_asm+'\n'
-    input_asm = re.sub(zeros_pattern, '', input_asm)
-    before = f"# This is the assembly code with {opt_state} optimization:\n"#prompt
+        if '<'+'func0'+'>:' not in asm: #IMPORTANT replace func0 with the function name
+            raise ValueError("compile fails")
+        asm = '<'+'func0'+'>:' + asm.split('<'+'func0'+'>:')[-1].split('\n\n')[0] #IMPORTANT replace func0 with the function name
+        asm_clean = ""
+        asm_sp = asm.split("\n")
+        for tmp in asm_sp:
+            idx = min(
+                len(tmp.split("\t")) - 1, 2
+            )
+            tmp_asm = "\t".join(tmp.split("\t")[idx:])  # remove the binary code
+            tmp_asm = tmp_asm.split("#")[0].strip()  # remove the comments
+            asm_clean += tmp_asm + "\n"
+    input_asm = asm_clean.strip()
+    before = f"# This is the assembly code:\n"#prompt
     after = "\n# What is the source code?\n"#prompt
     input_asm_prompt = before+input_asm.strip()+after
     with open(fileName +'_' + opt_state +'.asm','w',encoding='utf-8') as f:
@@ -106,7 +111,7 @@ for opt_state in OPT:
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-model_path = 'arise-sustech/llm4decompile-1.3b'
+model_path = 'LLM4Binary/llm4decompile-6.7b-v1.5' # V1.5 Model
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat16).cuda()
 
