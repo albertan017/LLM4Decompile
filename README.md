@@ -26,8 +26,8 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 Re-executability serves as critical indicator in validating the effectiveness of a decompilation process. Re-executability provides critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
 
 ### Benchmarks
-* **HumanEval-Decompile** Contains 164 functions that are only dependent on standard C libraries.
-* **ExeBench** Contains 2621 functions sampled from real projects, where the functions rely on user defined functions, structures, and macros.
+* **HumanEval-Decompile** A collection of 164 functions that exclusively rely on **standard** C libraries.
+* **ExeBench** A collection of 2,621 functions drawn from **real** projects, each utilizing user-defined functions, structures, and macros.
 
 
 <p align="center">
