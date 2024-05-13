@@ -106,6 +106,19 @@ for opt_state in OPT:
         f.write(input_asm_prompt)
 ```
 
+Assembly instructions should be in the format:
+
+<FUNCTION_NAME>:\nOPERATIONS\nOPERATIONS\n
+
+Typical assembly instructions may look like this:
+```
+<func0>:
+endbr64
+lea    (%rdi,%rsi,1),%eax
+retq
+```
+
+
 **Decompilation:** Use LLM4Decompile to translate the assembly instructions into C:
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -156,9 +169,9 @@ bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 
 ## On Going
-* Larger training dataset with the cleaning process. (done:2024.05.10)
+* Larger training dataset with the cleaning process. (done:2024.05.13)
 * Support for popular languages/platforms and settings.
-* Support for executable binaries. (done:2024.05.10)
+* Support for executable binaries. (done:2024.05.13)
 * Integration with decompilation tools (e.g., Ghidra, Rizin)
 
 ## License
