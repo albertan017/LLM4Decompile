@@ -12,7 +12,7 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-05-10]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset (15B tokens) and with a maximum token **length of 4,096**, which greatly enhances **performance** (up to **100%**) compared to the previous model.
+* [2023-05-13]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset (15B tokens) and a maximum token **length of 4,096**, with remarkable  performance (up to **100% improvement**) compared to the previous model.
 * [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
@@ -60,10 +60,10 @@ Note 1: The NSP model is trained with assembly code, the average re-executabilit
 
 Note 2: The unified optimization (UO) model is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.21. The pre-processing of the UO model is slightly different (no prior knowledge of the On), please check the [model page](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo#3-how-to-use).
 
-Note 3: V1.5 are trained with a larger dataset (15B tokens) and with a maximum token size of 4,096, which greatly enhances performance (up to 100%) compared to the previous model.
+Note 3: V1.5 series are trained with a larger dataset (15B tokens) and a maximum token size of 4,096, with remarkable performance (up to 100% improvement) compared to the previous model.
 
 ## Quick Start
-Here is an example of how to use our model (Revised for V1.5).
+Here is an example of how to use our model (Revised for V1.5. For previous models, please check the corresponding model page at HF).
 Note: **Replace** func0 with the function name you want to decompile.
 
 **Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
@@ -105,6 +105,19 @@ for opt_state in OPT:
     with open(fileName +'_' + opt_state +'.asm','w',encoding='utf-8') as f:
         f.write(input_asm_prompt)
 ```
+
+Assembly instructions should be in the format:
+
+<FUNCTION_NAME>:\nOPERATIONS\nOPERATIONS\n
+
+Typical assembly instructions may look like this:
+```
+<func0>:
+endbr64
+lea    (%rdi,%rsi,1),%eax
+retq
+```
+
 
 **Decompilation:** Use LLM4Decompile to translate the assembly instructions into C:
 ```python
@@ -156,9 +169,9 @@ bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 
 ## On Going
-* Larger training dataset with the cleaning process. (done:2024.05.10)
+* Larger training dataset with the cleaning process. (done:2024.05.13)
 * Support for popular languages/platforms and settings.
-* Support for executable binaries. (done:2024.05.10)
+* Support for executable binaries. (done:2024.05.13)
 * Integration with decompilation tools (e.g., Ghidra, Rizin)
 
 ## License
