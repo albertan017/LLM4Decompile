@@ -15,7 +15,7 @@ git clone https://github.com/albertan017/LLM4Decompile.git
 cd LLM4Decompile
 pip install -r requirements.txt
 
-# Before run the evaluation script, plase update the model_path to your local mdoel path.
+# Before run the evaluation script, please update the model_path to your local model path.
 bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 ---
@@ -23,7 +23,7 @@ To run the evaluation using [vLLM](https://github.com/vllm-project/vllm)
 ```bash
 pip install -r requirements.txt
 cd evaluation
-# Before run the evaluation script, plase update the model_path to your local mdoel path.
+# Before run the evaluation script, please update the model_path to your local model path.
 python run_evaluation_llm4decompile_vllm.py \
   --model_path arise-sustech/llm4decompile-1.3b \
   --testset_path ../decompile-eval/decompile-eval.json \
