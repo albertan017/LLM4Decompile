@@ -8,8 +8,8 @@ import json
 from tqdm import tqdm, trange
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_path',type=str,default='arise-sustech/llm4decompile-1.3b',required=False)
-parser.add_argument('--data_path',type=str,default='../decompile-eval/decompile-eval.json',required=False)
+parser.add_argument('--model_path',type=str,default='LLM4Binary/llm4decompile-6.7b-v1.5',required=False)
+parser.add_argument('--data_path',type=str,default='../decompile-eval/decompile-eval-executable-gcc-obj.json',required=False)
 
 args = parser.parse_args()
 
