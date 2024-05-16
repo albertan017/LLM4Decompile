@@ -1,4 +1,5 @@
 ## Updates
+* [2023-05-16]: Please use ``decompile-eval-executable-gcc-obj.json``. The source codes are compiled into executable binaries and disassembled into assembly instructions.
 * [2023-04-10]: Add vllm evaluation script.
 
 ---
@@ -15,7 +16,7 @@ git clone https://github.com/albertan017/LLM4Decompile.git
 cd LLM4Decompile
 pip install -r requirements.txt
 
-# Before run the evaluation script, plase update the model_path to your local mdoel path.
+# Before running the evaluation script, please update the model_path to your local model path.
 bash ./scripts/run_evaluation_llm4decompile.sh
 ```
 ---
@@ -23,10 +24,10 @@ To run the evaluation using [vLLM](https://github.com/vllm-project/vllm)
 ```bash
 pip install -r requirements.txt
 cd evaluation
-# Before run the evaluation script, plase update the model_path to your local mdoel path.
+# Before running the evaluation script, please update the model_path to your local model path.
 python run_evaluation_llm4decompile_vllm.py \
-  --model_path arise-sustech/llm4decompile-1.3b \
-  --testset_path ../decompile-eval/decompile-eval.json \
+  --model_path LLM4Binary/llm4decompile-6.7b-v1.5 \
+  --testset_path ../decompile-eval/decompile-eval-executable-gcc-obj.json \
   --gpus 8 \
   --max_total_tokens 8192 \
   --max_new_tokens 512 \
