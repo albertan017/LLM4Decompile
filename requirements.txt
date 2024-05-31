@@ -3,5 +3,6 @@ transformers
 loguru
 tqdm
 text_generation
-vllm
+vllm==0.4.0
 flash-attn
+datasets
