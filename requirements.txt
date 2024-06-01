@@ -4,5 +4,4 @@ loguru
 tqdm
 text_generation
 vllm==0.4.0
-flash-attn
 datasets
