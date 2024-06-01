@@ -27,6 +27,7 @@ pip install -r requirements.txt
 To use the flash-attention backend to speed up the interface, you can install it via `pip install flash-attn`.
 ```bash
 cd evaluation
+# Before running the evaluation script, please update the model_path to your local model path.
 python run_evaluation_llm4decompile_vllm.py \
   --model_path LLM4Binary/llm4decompile-6.7b-v1.5 \
   --testset_path ../decompile-eval/decompile-eval-executable-gcc-obj.json \
