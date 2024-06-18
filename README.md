@@ -20,7 +20,15 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 * **LLM4Decompile-End** focuses on decompiling the binary directly. **LLM4Decompile-Ref** refines the pseudo-code decompiled by Ghidra.
 
 
-## Evaluation Results
+## Evaluation
+
+### Framework
+<p align="center">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/compile-decompile.png" alt="image" width="400" height="auto">
+</p>
+
+During compilation, the Preprocessor processes the source code (SRC) to eliminate comments and expand macros or includes. The cleaned code is then forwarded to the Compiler, which converts it into assembly code (ASM). This ASM is transformed into binary code (0s and 1s) by the Assembler. The Linker finalizes the process by linking function calls to create an executable file. Decompilation, on the other hand, involves converting binary code back into a source file. LLMs, being trained on text, lack the ability to process binary data directly. Therefore, binaries must be disassembled by ```Objdump``` into assembly language (ASM) first. It should be noted that binary and disassembled ASM are equivalent, they can be interconverted, and thus we refer to them interchangeably. Finally, the loss is computed between the decompiled code and source code to guide the training. To assess the quality of the decompiled code (SRC'), it is tested for its functionality through test assertions (re-executability).
+
 ### Metrics
 * **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
 
@@ -28,12 +36,6 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 * **HumanEval-Decompile** A collection of 164 C functions that exclusively rely on **standard** C libraries.
 * **ExeBench** A collection of 2,621 functions drawn from **real** projects, each utilizing user-defined functions, structures, and macros.
 
-
-<p align="center">
-<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/compile-decompile.png" alt="image" width="400" height="auto">
-</p>
-
-The figure presents the steps involved in our decompilation evaluation. First, the source code (denoted as SRC) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (ASM) using the objdump tool. The assembly instructions are subsequently decompiled by the LLM4Decompile models to reconstruct the source code in a format that's readable to humans (noted as SRC'). To assess the quality of the decompiled code (SRC'), it is tested for its functionality through test assertions (re-executability).
 
 ### Results
 
