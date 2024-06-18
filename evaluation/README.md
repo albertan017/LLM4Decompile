@@ -24,13 +24,13 @@ python run_evaluation_llm4decompile_vllm.py \
 ```
 
 ---
-To run the evaluation on single GPU and single process:
+To run the evaluation on single GPU and single process: (legacy, not updated)
 ```bash
 cd LLM4Decompile
 python ./evaluation/run_evaluation_llm4decompile_singleGPU.py
 ```
 ---
-To run the evaluation using TGI (10x faster, support multiple GPUs and multi-process):
+To run the evaluation using TGI (10x faster, support multiple GPUs and multi-process): (legacy, not updated)
 First, please install the text-generation-inference following the official [link](https://github.com/huggingface/text-generation-inference)
 ```bash
 git clone https://github.com/albertan017/LLM4Decompile.git
