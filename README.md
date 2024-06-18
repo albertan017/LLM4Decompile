@@ -144,30 +144,15 @@ print(f'decompiled function:\n{c_func_decompile}')
 ```
 
 ## HumanEval-Decompile
-Data are stored in ``llm4decompile/decompile-eval/decompile-eval.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
+Data are stored in ``llm4decompile/decompile-eval/decompile-eval-executable-gcc-obj.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
 *   ``task_id``: indicates the ID of the problem.
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
 *   ``c_func``: C solution for HumanEval problem. 
 *   ``c_test``: C test assertions.
-*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile/blob/main/README.md#3-how-to-use-the-model).
+*   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile?tab=readme-ov-file#quick-start).
 
-To run the evaluation on a single GPU and single process:
-```bash
-cd LLM4Decompile
-python ./evaluation/run_evaluation_llm4decompile_singleGPU.py
-```
-
-To run the evaluation using TGI (10x faster, support multiple GPUs and multi-process):
-First, please install the text-generation-inference following the official [link](https://github.com/huggingface/text-generation-inference)
-```bash
-git clone https://github.com/albertan017/LLM4Decompile.git
-cd LLM4Decompile
-pip install -r requirements.txt
-
-# Before running the evaluation script, please update the model_path to your local model path.
-bash ./scripts/run_evaluation_llm4decompile.sh
-```
+Please check the [evaluation scripts](https://github.com/albertan017/LLM4Decompile/tree/main/evaluation).
 
 ## On Going
 * Larger training dataset with the cleaning process. (done:2024.05.13)
