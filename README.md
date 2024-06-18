@@ -12,21 +12,20 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-05-13]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series. V1.5 are trained with a larger dataset (15B tokens) and a maximum token **length of 4,096**, with remarkable  performance (up to **100% improvement**) compared to the previous model.
+* [2023-05-13]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series (LLM4Decompile-End). V1.5 are trained with a larger dataset (15B tokens) and a maximum token **length of 4,096**, with remarkable  performance (over **100% improvement**) compared to the previous model.
 * [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
-* **HumanEval-Decompile** is the first decompilation benchmark that focuses on assessing the re-executability aspects of decompiled code. It is the C language adaptation of the HumanEval dataset and provides a suite of C solutions and assertions in evaluating the practical utility of decompiled code.
+* **LLM4Decompile-End** focuses on decompiling the binary directly. **LLM4Decompile-Ref** refines the pseudo-code decompiled by Ghidra.
 
 
 ## Evaluation Results
 ### Metrics
 * **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
-Re-executability serves as critical indicator in validating the effectiveness of a decompilation process. Re-executability provides critical measure of semantic correctness. By re-compiling the decompiled output and running the test cases, we assess if the decompilation preserved the program logic and behavior.
 
 ### Benchmarks
-* **HumanEval-Decompile** A collection of 164 functions that exclusively rely on **standard** C libraries.
+* **HumanEval-Decompile** A collection of 164 C functions that exclusively rely on **standard** C libraries.
 * **ExeBench** A collection of 2,621 functions drawn from **real** projects, each utilizing user-defined functions, structures, and macros.
 
 
@@ -34,7 +33,7 @@ Re-executability serves as critical indicator in validating the effectiveness of
 <img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/compile-decompile.png" alt="image" width="400" height="auto">
 </p>
 
-Figure 1 presents the steps involved in our decompilation evaluation. First, the source code (denoted as src) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (asm) using the objdump tool. The assembly instructions are subsequently decompiled to reconstruct the source code in a format that's readable to humans (noted as src'). To assess the quality of the decompiled code (src'), it is tested for its functionality through test assertions (re-executability).
+The figure presents the steps involved in our decompilation evaluation. First, the source code (denoted as SRC) is compiled by the GCC compiler with specific parameters, such as optimization levels, to produce the executable binary. This binary is then disassembled into assembly language (ASM) using the objdump tool. The assembly instructions are subsequently decompiled by the LLM4Decompile models to reconstruct the source code in a format that's readable to humans (noted as SRC'). To assess the quality of the decompiled code (SRC'), it is tested for its functionality through test assertions (re-executability).
 
 ### Results
 
