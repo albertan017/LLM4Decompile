@@ -1,7 +1,7 @@
 # LLM4Decompile
 
 <p align="left">
-    📊&nbsp;<a href="#evaluation-results">Results</a>
+    📊&nbsp;<a href="#evaluation">Results</a>
     | 🤗&nbsp;<a href="#models">Models</a>
     | 🚀&nbsp;<a href="#quick-start">Quick Start</a>
     | 📚&nbsp;<a href="#humaneval-decompile">HumanEval-Decompile</a>
