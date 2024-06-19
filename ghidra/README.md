@@ -84,14 +84,11 @@ ghidra_path = "./ghidra_11.0.3_PUBLIC/support/analyzeHeadless"#path to the headl
 postscript = "./decompile.py"#path to the decompiler helper function, change the path accordingly
 project_path = "."#path to temp folder for analysis, change the path accordingly
 project_name = "tmp_ghidra_proj"
-func = "../samples/sample.c"#path to c code for compiling and decompiling, change the path accordingly
+func_path = "../samples/sample.c"#path to c code for compiling and decompiling, change the path accordingly
 fileName = "sample"
 
 with tempfile.TemporaryDirectory() as temp_dir:
     pid = os.getpid()
-    func_path = os.path.join(temp_dir, f"{pid}.c")
-    with open(func_path,'w') as f:
-        f.write(func)
     asm_all = {}
     for opt in OPT:
         executable_path = os.path.join(temp_dir, f"{pid}_{opt}.o")
@@ -110,7 +107,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
             temp_dir,
             project_name,
             "-import", executable_path,
-            "-postScript", postscript, output_path
+            "-postScript", postscript, output_path,
             "-deleteProject",  # WARNING: This will delete the project after analysis
         ]
         result = subprocess.run(command, text=True, capture_output=True, check=True)
@@ -139,7 +136,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
         before = f"# This is the assembly code:\n"#prompt
         after = "\n# What is the source code?\n"#prompt
         input_asm_prompt = before+input_asm.strip()+after
-        with open(fileName +'_' + opt_state +'.pseudo','w',encoding='utf-8') as f:
+        with open(fileName +'_' + opt +'.pseudo','w',encoding='utf-8') as f:
             f.write(input_asm_prompt)
 ```
 
