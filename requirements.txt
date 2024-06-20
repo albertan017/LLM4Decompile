@@ -1,7 +1,6 @@
 tqdm
-transformers
 loguru
 tqdm
 text_generation
 vllm==0.4.0
-datasets
+numpy==1.23.3
