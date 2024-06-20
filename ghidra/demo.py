@@ -11,16 +11,13 @@ ghidra_path = "./ghidra_11.0.3_PUBLIC/support/analyzeHeadless"#path to the headl
 postscript = "./decompile.py"#path to the decompiler helper function, change the path accordingly
 project_path = "."#path to temp folder for analysis, change the path accordingly
 project_name = "tmp_ghidra_proj"
-func = "../samples/sample.c"#path to c code for compiling and decompiling, change the path accordingly
+func_path = "../samples/sample.c"#path to c code for compiling and decompiling, change the path accordingly
 fileName = "sample"
 
 with tempfile.TemporaryDirectory() as temp_dir:
     pid = os.getpid()
-    func_path = os.path.join(temp_dir, f"{pid}.c")
-    with open(func_path,'w') as f:
-        f.write(func)
     asm_all = {}
-    for opt in OPT:
+    for opt in [OPT[0]]:
         executable_path = os.path.join(temp_dir, f"{pid}_{opt}.o")
         cmd = f'gcc -{opt} -o {executable_path} {func_path} -lm'
         subprocess.run(
@@ -66,15 +63,16 @@ with tempfile.TemporaryDirectory() as temp_dir:
         before = f"# This is the assembly code:\n"#prompt
         after = "\n# What is the source code?\n"#prompt
         input_asm_prompt = before+input_asm.strip()+after
-        with open(fileName +'_' + opt_state +'.pseudo','w',encoding='utf-8') as f:
+        with open(fileName +'_' + opt +'.pseudo','w',encoding='utf-8') as f:
             f.write(input_asm_prompt)
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
 model_path = 'LLM4Binary/llm4decompile-6.7b-v2' # V2 Model
+
 tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat16).cuda()
+model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16).cuda()
 
 with open(fileName +'_' + OPT[0] +'.pseudo','r') as f:#optimization level O0
     asm_func = f.read()
