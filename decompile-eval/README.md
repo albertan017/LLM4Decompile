@@ -8,7 +8,7 @@ There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
 *   ``c_func``: C solution for HumanEval problem. 
 *   ``c_test``: C test assertions.
-*   ``input_asm_prompt``: assembly instructions with prompts (or Ghidra results), can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile/blob/main/ghidra/README.md#quick-start).
+*   ``input_asm_prompt``: assembly instructions with prompts (or Ghidra results), can be derived as in our preprocessing example for [direct decompile](https://github.com/albertan017/LLM4Decompile#quick-start) or [refine Ghidra](https://github.com/albertan017/LLM4Decompile/blob/main/ghidra/README.md#quick-start).
 
 Programming languages are highly structured and logical, insensitive to the naming of functions and variables, yet very sensitive to the flow of data and logic. Changing variable or function names does not affect the meaning of a program, but a single logical error can alter its entire function and purpose.
 As illustrated in Figure, the use of BLEU and ES in evaluating code similarity is problematic. 
