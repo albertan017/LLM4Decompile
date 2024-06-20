@@ -42,7 +42,7 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 
 Note 3: V1.5 series are trained with a larger dataset (15B tokens) and a maximum token size of 4,096, with remarkable performance (over 100% improvement) compared to the previous model.
 
-Note 3: V2 series are built upon **Ghidra** and trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra.
+Note 4: V2 series are built upon **Ghidra** and trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra.
 
 ## Quick Start
 Here is an example of how to use our model (Only for V2. For previous models, please check the corresponding model page at HF).
@@ -51,8 +51,7 @@ Here is an example of how to use our model (Only for V2. For previous models, pl
 Download [Ghidra](https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0.3_build/ghidra_11.0.3_PUBLIC_20240410.zip) to the current folder. You can also check the [page](https://github.com/NationalSecurityAgency/ghidra/releases) for other versions. Unzip the package to the current folder.
 In bash, you can use the following:
 ```bash
-mkdir ghidra
-cd ghidra
+cd LLM4Decompile/ghidra
 wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0.3_build/ghidra_11.0.3_PUBLIC_20240410.zip
 unzip ghidra_11.0.3_PUBLIC_20240410.zip
 ```
@@ -65,14 +64,12 @@ apt install openjdk-17-jdk openjdk-17-jre
 ```
 Please check [Ghidra install guide](https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/Ghidra_11.1.1_build/GhidraDocs/InstallationGuide.html) for other platforms. 
 
-3. Use Ghidra Headless to decompile binary
+3. Use Ghidra Headless to decompile binary (demo.py)
 
 Note: **Replace** func0 with the function name you want to decompile.
 
 **Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
 ```python
-import json
-import tempfile
 import os
 import subprocess
 from tqdm import tqdm,trange
@@ -90,7 +87,7 @@ fileName = "sample"
 with tempfile.TemporaryDirectory() as temp_dir:
     pid = os.getpid()
     asm_all = {}
-    for opt in OPT:
+    for opt in [OPT[0]]:
         executable_path = os.path.join(temp_dir, f"{pid}_{opt}.o")
         cmd = f'gcc -{opt} -o {executable_path} {func_path} -lm'
         subprocess.run(
@@ -164,6 +161,7 @@ undefined4 func0(float param_1,long param_2,int param_3)
   } while( true );
 }
 ```
+4. Refine pseudo-code using LLM4Decompile (demo.py)
 
 **Decompilation:** Use LLM4Decompile-Ref to refine the Ghidra pseudo-code into C:
 ```python
@@ -172,7 +170,7 @@ import torch
 
 model_path = 'LLM4Binary/llm4decompile-6.7b-v2' # V2 Model
 tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.bfloat16).cuda()
+model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16).cuda()
 
 with open(fileName +'_' + OPT[0] +'.pseudo','r') as f:#optimization level O0
     asm_func = f.read()
@@ -186,16 +184,17 @@ with open(fileName +'_' + OPT[0] +'.pseudo','r') as f:#original file
 
 print(f'pseudo function:\n{func}')# Note we only decompile one function, where the original file may contain multiple functions
 print(f'refined function:\n{c_func_decompile}')
+
 ```
 
 ## HumanEval-Decompile
-Data for the pseudo-code are stored in ``llm4decompile/decompile-eval/decompile-eval-executable-gcc-obj.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
+Data for the pseudo-code are stored in ``llm4decompile/decompile-eval/decompile-eval-executable-gcc-ghidra.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
 *   ``task_id``: indicates the ID of the problem.
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
 *   ``c_func``: C solution for HumanEval problem. 
 *   ``c_test``: C test assertions.
-*   ``ghidra_decompile``: Ghidra decompiled result.
+*   ``input_asm_prompt``: Ghidra decompiled result.
 
 Please check the [evaluation scripts](https://github.com/albertan017/LLM4Decompile/tree/main/evaluation).
 
