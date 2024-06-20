@@ -65,6 +65,16 @@ Note 2: The unified optimization (UO) model is trained without prior knowledge o
 Note 3: V1.5 series are trained with a larger dataset (15B tokens) and a maximum token size of 4,096, with remarkable performance (over 100% improvement) compared to the previous model.
 
 ## Quick Start
+
+**Setup:** Please use the script below to install the necessary environment.
+```
+git clone https://github.com/albertan017/LLM4Decompile.git
+cd LLM4Decompile
+conda create -n 'llm4decompile' python=3.9 -y
+conda activate llm4decompile
+pip install -r requirements.txt
+```
+
 Here is an example of how to use our model (Revised for V1.5. For previous models, please check the corresponding model page at HF).
 Note: **Replace** func0 with the function name you want to decompile.
 
