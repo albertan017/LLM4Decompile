@@ -9,7 +9,7 @@
 </p>
 
 ## Updates
-* [2023-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2, building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. This version outperforms the 6.7B-V1.5 by an additional 16.2%.
+* [2023-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2 (1.3B-22B), building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. The 22B-V2 version outperforms the 6.7B-V1.5 by an additional 40.1%.
 
 ## About
 * **LLM4Decompile-Ref** refines the pseudo-code decompiled by Ghidra.
@@ -39,6 +39,7 @@ Our LLM4Decompile includes models with sizes between 1.3 billion and 33 billion 
 | **llm4decompile-6.7b-v1.5**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5)   | 6.7B | 45.4%   | Note 3 |
 | **llm4decompile-1.3b-v2**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v2)   | 1.3B | **46.0%**   | Note 4 |
 | **llm4decompile-6.7b-v2**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2)   | 6.7B | **52.7%**   | Note 4 |
+| **llm4decompile-22b-v2**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-22b-v2)   | 22B | **63.6%**   | Note 4 |
 
 Note 3: V1.5 series are trained with a larger dataset (15B tokens) and a maximum token size of 4,096, with remarkable performance (over 100% improvement) compared to the previous model.
 
