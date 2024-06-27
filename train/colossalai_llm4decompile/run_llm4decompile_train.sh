@@ -15,7 +15,7 @@ PARENT_TENSORBOARD_DIR="./tensorboard/"
 PARENT_CONFIG_FILE="./configs/"
 PRETRAINED_MODEL_PATH="path/deepseek-coder-6.7b-base"
 
-mkdir -p PARENT_SAVE_DIR PARENT_TENSORBOARD_DIR PARENT_CONFIG_FILE
+mkdir -p $PARENT_SAVE_DIR $PARENT_TENSORBOARD_DIR $PARENT_CONFIG_FILE
 
 declare -a dataset=(
     "path_to_llm4decompile_data/arrow/part-00000"
