@@ -1,6 +1,6 @@
 ## Updates
-* [2023-05-16]: Please use ``decompile-eval-executable-gcc-obj.json``. The source codes are compiled into executable binaries and disassembled into assembly instructions.
-* [2023-04-10]: Add vllm evaluation script.
+* [2024-05-16]: Please use ``decompile-eval-executable-gcc-obj.json``. The source codes are compiled into executable binaries and disassembled into assembly instructions.
+* [2024-04-10]: Add vllm evaluation script.
 
 
 To run the evaluation using [vLLM](https://github.com/vllm-project/vllm) (**Recommended**)
