@@ -9,7 +9,7 @@
 </p>
 
 ## Updates
-* [2023-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2 (1.3B-22B), building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. The 22B-V2 version outperforms the 6.7B-V1.5 by an additional 40.1%.
+* [2024-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2 (1.3B-22B), building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. The 22B-V2 version outperforms the 6.7B-V1.5 by an additional 40.1%.
 
 ## About
 * **LLM4Decompile-Ref** refines the pseudo-code decompiled by Ghidra.
