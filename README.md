@@ -12,9 +12,9 @@
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
 ## Updates
-* [2023-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2 (1.3B-22B), building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. The 22B-V2 version outperforms the 6.7B-V1.5 by an additional 40.1%. Please check the [ghidra folder](https://github.com/albertan017/LLM4Decompile/tree/main/ghidra) for details.
-* [2023-05-13]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series (LLM4Decompile-End, directly decompile binary using LLM). V1.5 are trained with a larger dataset (15B tokens) and a maximum token **length of 4,096**, with remarkable  performance (over **100% improvement**) compared to the previous model.
-* [2023-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
+* [2024-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2 (1.3B-22B), building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. The 22B-V2 version outperforms the 6.7B-V1.5 by an additional 40.1%. Please check the [ghidra folder](https://github.com/albertan017/LLM4Decompile/tree/main/ghidra) for details.
+* [2024-05-13]: Release [V1.5](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v1.5) series (LLM4Decompile-End, directly decompile binary using LLM). V1.5 are trained with a larger dataset (15B tokens) and a maximum token **length of 4,096**, with remarkable  performance (over **100% improvement**) compared to the previous model.
+* [2024-03-16]: Add [llm4decompile-6.7b-uo](https://huggingface.co/arise-sustech/llm4decompile-6.7b-uo) model which is trained without prior knowledge of the optimization levels (O0~O3), the average re-executability is around 0.219, performs the best in our models.
 
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
