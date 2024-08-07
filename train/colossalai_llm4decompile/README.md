@@ -11,6 +11,26 @@ Here are some lessons based on our experience:
 4. Ensure your SSH service is configured and running correctly.
 5. Utilize the TensorBoard plugin in Visual Studio Code for convenient monitoring of training loss.
 
+---
+### Prepare the data
+First, convert your data into the following JSON format:
+```json
+{
+  "source": "asm_code",
+  "target": "c_source_code",
+  "category": "llm4decompile"
+}
+```
+Next, transform the raw data to the Colossal AI training format using the following command:
+```
+python prepare_pretrain_dataset.py \
+    --data_input_dirs "raw_data_dir" \
+    --tokenizer_dir "path/deepseek-coder-6.7b-base" \
+    --data_output_dirs "path_to_llm4decompile_data" \
+    --max_length 4096 \
+    --num_spliced_dataset_bins 1
+```
+### Training the llm4decompile model
 Once the environment is properly configured, initiate the training process by executing:
 ```bash
 bash run_llm4decompile_train.sh
