@@ -7,6 +7,7 @@
     | 📚&nbsp;<a href="#humaneval-decompile">HumanEval-Decompile</a>
     | 📎&nbsp;<a href="#citation">Citation</a>
     | 📝&nbsp;<a href="https://arxiv.org/abs/2403.05286">Paper</a>
+    | 📝&nbsp;<a href="https://colab.research.google.com/drive/1X5TuUKuNuksGJZz6Cc83KKI0ATBP9q7r?usp=sharing">Colab</a>
 </p>
 
 Reverse Engineering: Decompiling Binary Code with Large Language Models
