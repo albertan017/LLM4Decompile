@@ -70,6 +70,8 @@ Note 4: V2 series are built upon **Ghidra** and trained on 2 billion tokens to *
 
 ## Quick Start
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1X5TuUKuNuksGJZz6Cc83KKI0ATBP9q7r?usp=sharing)
+
 **Setup:** Please use the script below to install the necessary environment.
 ```
 git clone https://github.com/albertan017/LLM4Decompile.git
