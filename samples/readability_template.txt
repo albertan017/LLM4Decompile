@@ -1,0 +1,28 @@
+Readability Evaluation Template for Decompiled Function
+1. Original Function
+```
+[SRC]
+```
+2. Decompiled Function
+```
+[DSRC]
+```
+3. Evaluation Aspects
+Each aspect of the decompiled function should be rated on a scale from 1 (Poor) to 5 (Excellent). Provide brief justifications for each rating.
+3.1 Syntax Similarity
+- Are the variable names easy to understandin the decompiled function? 
+- Does the decompiled control flow (loops, conditionals) closely match the original function?
+- Does the decompiled function keep the arry indexing and structure operation?
+Rating:
+Short Justification:
+
+3.2 Structural Integrity:
+- Is the decompiled function easy to understand at a glance?
+- Does the decompiled function maintain the logical structure of the original?
+- Are there any redundant or unnecessary code snippets added during decompilation?
+Rating:
+Short Justification:
+
+4. Overall Readability Score
+Description: Based on the detailed aspects evaluated above, provide an overall numerical score from 1 (Poor) to 5 (Excellent) for the readability of the decompiled function. Do not explain.
+Score:
