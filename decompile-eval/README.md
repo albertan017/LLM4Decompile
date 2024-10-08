@@ -1,7 +1,7 @@
 ## Updates
 
-* [2024-06-20]: Upload ``decompile-eval-executable-gcc-ghidra.json``. **V2 models should use this dataset.** The source codes are compiled into executable binaries and disassembled by Ghidra into pseudo-code.
-* [2024-05-16]: Please use ``decompile-eval-executable-gcc-obj.json``. **V1.5 models should use this dataset.** The source codes are compiled into executable binaries and disassembled into assembly instructions.
+* [2024-06-20]: Upload ``decompile-eval-executable-gcc-ghidra.json``. **V2 models should use this dataset.** The source codes are compiled into executable binaries and **decompiled by Ghidra into pseudo-code**.
+* [2024-05-16]: Please use ``decompile-eval-executable-gcc-obj.json``. **V1.5 models should use this dataset.** The source codes are compiled into executable binaries and **disassembled into assembly instructions**.
 
 There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
