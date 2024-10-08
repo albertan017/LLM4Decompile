@@ -12,6 +12,8 @@
 
 Reverse Engineering: Decompiling Binary Code with Large Language Models
 
+[![GitHub Tread](https://trendshift.io/api/badge/repositories/1234)](https://trendshift.io/repositories/1234)
+
 ## Updates
 * [2024-09-26]: Update a [Colab notebook](https://colab.research.google.com/drive/1X5TuUKuNuksGJZz6Cc83KKI0ATBP9q7r?usp=sharing) to demonstrate the usage of the LLM4Decompile model, including examples for the LLM4Decompile-End and LLM4Decompile-Red models.
 * [2024-09-23]: Release [LLM4Decompile-9B-v2](https://huggingface.co/LLM4Binary/llm4decompile-9b-v2), fine-tuned based on [Yi-Coder-9B](https://huggingface.co/01-ai/Yi-Coder-9B), achieved a re-executability rate of **0.6494** on the Decompile benchmark.
