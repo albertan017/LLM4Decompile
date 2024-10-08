@@ -1,5 +1,6 @@
 ## Updates
-* [2024-05-16]: Please use ``decompile-eval-executable-gcc-obj.json``. The source codes are compiled into executable binaries and disassembled into assembly instructions.
+* [Note]: Please use ``decompile-eval-executable-gcc-ghidra.json`` for **V2 models**. The source codes are compiled into executable binaries and decompiled by Ghidra into pseudo-code.
+* [Note]: Please use ``decompile-eval-executable-gcc-obj.json`` for **V1.5 models**. The source codes are compiled into executable binaries and disassembled into assembly instructions.
 * [2024-04-10]: Add vllm evaluation script.
 
 
