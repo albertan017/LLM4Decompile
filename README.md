@@ -88,13 +88,13 @@ pip install -r requirements.txt
 ```
 
 Here is an example of how to use our model (Revised for V1.5. For previous models, please check the corresponding model page at HF).
-Note: **Replace ALL the "func0" with the function name you want to decompile**.
+Note: **Replace the "func0" with the function name you want to decompile**.
 
 **Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
 ```python
 import subprocess
 import os
-
+func_name = 'func0'
 OPT = ["O0", "O1", "O2", "O3"]
 fileName = 'samples/sample' #'path/to/file'
 for opt_state in OPT:
@@ -108,9 +108,9 @@ for opt_state in OPT:
     input_asm = ''
     with open(output_file+'.s') as f:#asm file
         asm= f.read()
-        if '<'+'func0'+'>:' not in asm: #IMPORTANT replace func0 with the function name
+        if '<'+func_name+'>:' not in asm: #IMPORTANT replace func0 with the function name
             raise ValueError("compile fails")
-        asm = '<'+'func0'+'>:' + asm.split('<'+'func0'+'>:')[-1].split('\n\n')[0] #IMPORTANT replace func0 with the function name
+        asm = '<'+func_name+'>:' + asm.split('<'+func_name+'>:')[-1].split('\n\n')[0] #IMPORTANT replace func0 with the function name
         asm_clean = ""
         asm_sp = asm.split("\n")
         for tmp in asm_sp:
