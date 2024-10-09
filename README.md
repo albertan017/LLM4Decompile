@@ -88,7 +88,7 @@ pip install -r requirements.txt
 ```
 
 Here is an example of how to use our model (Revised for V1.5. For previous models, please check the corresponding model page at HF).
-Note: **Replace** func0 with the function name you want to decompile.
+Note: **Replace ALL the "func0" with the function name you want to decompile**.
 
 **Preprocessing:** Compile the C code into binary, and disassemble the binary into assembly instructions.
 ```python
