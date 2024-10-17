@@ -1,0 +1,10 @@
+torch
+tokenizers
+transformers
+accelerate
+sympy
+pebble 
+timeout-decorator 
+attrdict
+deepspeed
+tensorboard
