@@ -1,4 +1,4 @@
-## Here's the guide on how to construct the training data.
+## Simple demo on constructing the training data. Note we use ExeBench as our final dataset.
 
 Before compiling, please clone the [AnghaBench](https://github.com/brenocfg/AnghaBench) dataset.
 
