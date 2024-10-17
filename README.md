@@ -15,6 +15,7 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 [![GitHub Tread](https://trendshift.io/api/badge/repositories/8664)](https://trendshift.io/repositories/8664)
 
 ## Updates
+* [2024-10-17]: Release [decompile-ghidra-100k](https://huggingface.co/datasets/LLM4Binary/decompile-ghidra-100k), a subset of 100k training samples (25k per optimization level). We provide a [training script](https://github.com/albertan017/LLM4Decompile/blob/main/train/README.md) that runs in ~3.5 hours on a single A100 40G GPU. It achieves a 0.26 re-executability rate, with a total cost of under $20 for quick replication of LLM4Decompile.
 * [2024-09-26]: Update a [Colab notebook](https://colab.research.google.com/drive/1X5TuUKuNuksGJZz6Cc83KKI0ATBP9q7r?usp=sharing) to demonstrate the usage of the LLM4Decompile model, including examples for the LLM4Decompile-End and LLM4Decompile-Ref models.
 * [2024-09-23]: Release [LLM4Decompile-9B-v2](https://huggingface.co/LLM4Binary/llm4decompile-9b-v2), fine-tuned based on [Yi-Coder-9B](https://huggingface.co/01-ai/Yi-Coder-9B), achieved a re-executability rate of **0.6494** on the Decompile benchmark.
 * [2024-06-19]: Release [V2](https://huggingface.co/LLM4Binary/llm4decompile-6.7b-v2) series (LLM4Decompile-Ref). V2 (1.3B-22B), building upon **Ghidra**, are trained on 2 billion tokens to **refine** the decompiled pseudo-code from Ghidra. The 22B-V2 version outperforms the 6.7B-V1.5 by an additional 40.1%. Please check the [ghidra folder](https://github.com/albertan017/LLM4Decompile/tree/main/ghidra) for details.
