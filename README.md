@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="samples/logo-dark.png">
-    <img alt="LLM4Decompile" src="logo-light.png" width=55%>
+    <img alt="LLM4Decompile" src="logo-light.png" width=80%>
   </picture>
 </p>
 
