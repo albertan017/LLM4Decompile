@@ -1,4 +1,6 @@
-# LLM4Decompile
+<p align="center">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/logo.png" alt="image" width="400" height="auto">
+</p>
 
 <p align="left">
     📊&nbsp;<a href="#evaluation">Results</a>
