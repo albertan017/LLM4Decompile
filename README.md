@@ -1,4 +1,9 @@
-# LLM4Decompile
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="samples/logo-dark.png">
+    <img alt="LLM4Decompile" src="logo-light.png" width=55%>
+  </picture>
+</p>
 
 <p align="left">
     📊&nbsp;<a href="#evaluation">Results</a>
