@@ -1,4 +1,4 @@
-## How to Fine-tune LLM4Decompile
+## How to Fine-tune LLM4Decompile (Based on Ghidra Pseudo-Code)
 
 We provide script `finetune.py`, adapted from the [deepseek-coder](https://github.com/deepseek-ai/DeepSeek-Coder/blob/main/finetune/finetune_deepseekcoder.py) repository.
 
@@ -50,7 +50,7 @@ CUDA_VISIBLE_DEVICES=0 deepspeed finetune.py \
 ```
 
 
-## Simple demo on constructing the training data. Note we use ExeBench as our final dataset.
+## Simple demo on constructing the training data (Based on Objdump assembly). Note we use ExeBench as our final dataset.
 
 Before compiling, please clone the [AnghaBench](https://github.com/brenocfg/AnghaBench) dataset.
 
