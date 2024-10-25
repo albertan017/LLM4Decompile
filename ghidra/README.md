@@ -27,7 +27,7 @@ This approach differs from that in LLM4Decompile-End only in terms of the LLM's 
 ### Results
 
 <p align="center">
-<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_refine.png" alt="results" width="800" height="auto">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/results_refine_final.png" alt="results" width="800" height="auto">
 </p>
 
 ## Models
