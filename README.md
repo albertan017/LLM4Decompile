@@ -13,7 +13,8 @@
     | 📚&nbsp;<a href="#humaneval-decompile">HumanEval-Decompile</a>
     | 📎&nbsp;<a href="#citation">Citation</a>
     | 📝&nbsp;<a href="https://arxiv.org/abs/2403.05286">Paper</a>
-    | 📝&nbsp;<a href="https://colab.research.google.com/drive/1X5TuUKuNuksGJZz6Cc83KKI0ATBP9q7r?usp=sharing">Colab</a>
+    | 🖥️&nbsp;<a href="https://colab.research.google.com/drive/1X5TuUKuNuksGJZz6Cc83KKI0ATBP9q7r?usp=sharing">Colab</a>
+    | ▶️&nbsp;<a href="https://www.youtube.com/watch?v=x7knF3Z1yLk">YouTube</a>
 </p>
 
 Reverse Engineering: Decompiling Binary Code with Large Language Models
@@ -31,7 +32,6 @@ Reverse Engineering: Decompiling Binary Code with Large Language Models
 ## About
 * **LLM4Decompile** is the pioneering open-source large language model dedicated to decompilation. Its current version supports decompiling Linux x86_64 binaries, ranging from GCC's O0 to O3 optimization levels, into human-readable C source code. Our team is committed to expanding this tool's capabilities, with ongoing efforts to incorporate a broader range of architectures and configurations.
 * **LLM4Decompile-End** focuses on decompiling the binary directly. **LLM4Decompile-Ref** refines the pseudo-code decompiled by Ghidra.
-
 
 ## Evaluation
 
