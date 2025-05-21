@@ -14,11 +14,11 @@ if __name__ == '__main__':
     import numpy as np
     for dataset_name in ['humaneval','mbpp']:
         # raw data
-        with open(f'../data/{dataset_name}-decompile.json', 'r') as f:
+        with open(f'./data/{dataset_name}-decompile.json', 'r') as f:
             data = json.load(f)
         # decompiled results
         decompile_results = {}
-        for root, dirs, files in os.walk(f'../data/{dataset_name}'):
+        for root, dirs, files in os.walk(f'./data/{dataset_name}'):
             for name in files:
                 if name.endswith('.c') or name.endswith('.cpp'):
                     full_path = os.path.join(root, name)
