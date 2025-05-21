@@ -6,11 +6,12 @@
   </picture>
 </p>
 
-<p align="left">
-    📊&nbsp;<a href="#evaluation">Results</a>
-    | 🤗&nbsp;<a href="#models">Models</a>
-    | 🚀&nbsp;<a href="#collection">Collection</a>
+<p align="center">
+    🚀&nbsp;<a href="#pipeline">Pipeline</a>
     | 📚&nbsp;<a href="#benchmark">Benchmark</a>
+    | 🤗&nbsp;<a href="#models">Models</a>
+    | 🖥️&nbsp;<a href="#evaluation">Evaluation</a>
+    | 📊&nbsp;<a href="#results">Results</a>
 </p>
 
 ## Updates
@@ -22,35 +23,12 @@
 * **Decompile-Bench-Eval** includes manually crafted binaries from the well-established HumanEval and MBPP, alongside the compiled GitHub repositories released after 2025 to mitigate data leakage issues.
 
 
-## Collection
+## Pipeline
 <p align="center">
 <img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/dcbench-pipeline.png" alt="image" width="600" height="auto">
 </p>
 
 Compile-Trace-Filter framework that automates project compilation, precisely traces function‐level binary-source mappings, and applies robust filters to retain only high-quality pairs.
-
-## Metrics
-* **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
-* **Edit Similarity** based on Levenshtein Distance, this metric captures the minimum number of insertions, deletions, or substitutions needed to turn the generated code into the reference.
-
-## Evaluation
-
-## Models
-LLM4Binary/llm4decompile-1.3b-v1.6
-
-## Requirements
-* vllm >= 0.5.2
-```
-https://docs.vllm.ai/en/v0.5.2/getting_started/installation.html
-```
-
-```
-apt-get update
-apt-get install -y libboost-dev libssl-dev
-pip install editdistance
-```
-
-**IMPORTANT**: the libs are required for the compilation, otherwise, the compilation will fail.
 
 ## Benchmark
 [Decompile-Bench](https://huggingface.co/datasets/LLM4Binary/decompile-bench)
@@ -83,3 +61,55 @@ They contains the following columns:
 "ghidra_pseudo":"decompiled results (pseudo code) from ghidra"
 }
 ```
+
+## Models
+| Model                 | Checkpoint                                                        | Size | HumanEval-Decompile       | Alias |
+|-----------------------|-------------------------------------------------------------------|------|---------------------|----------------------|
+| **llm4decompile-1.3b-v1.5**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.5)   | 1.3B | **16.22%**   | LLM4Decompile-End |
+| **llm4decompile-1.3b-v1.6**| 🤗 [HF Link](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.6)   | 1.3B | **20.89%**   | LLM4Decompile-DCBench |
+
+
+## Metrics
+* **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
+* **Edit Similarity** based on Levenshtein Distance, this metric captures the minimum number of insertions, deletions, or substitutions needed to turn the generated code into the reference.
+
+## Requirements
+* vllm >= 0.5.2
+```
+https://docs.vllm.ai/en/v0.5.2/getting_started/installation.html
+```
+
+**IMPORTANT**: the libs are required for the compilation, otherwise, the compilation will fail.
+```
+apt-get update
+apt-get install -y libboost-dev libssl-dev
+pip install editdistance
+```
+
+## Evaluation
+* **Re-executability**
+```
+python3 run_exe_rate.py \
+--model_path LLM4Binary/llm4decompile-1.3b-v1.6 \
+--dataset_path ./data/humaneval-decompile.json \
+--output_path ./data/humaneval
+```
+
+* **Edit Similarity**
+```
+# Note that we assume the decompiled results are stored in the ./data/humaneval
+python3 ./metrics/cal_edit_sim.py
+```
+
+## Results
+
+<p align="center">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/dcbench-exe_rate.png" alt="exe" width="800" height="auto">
+</p>
+
+<p align="center">
+<img src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/dcbench-edit_sim.png" alt="edit" width="800" height="auto">
+</p>
+
+
+
