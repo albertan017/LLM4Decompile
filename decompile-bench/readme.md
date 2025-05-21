@@ -15,7 +15,8 @@
 </p>
 
 ## Updates
-* [2025-05-20]: Release [decompile-bench](https://huggingface.co/collections/LLM4Binary/decompile-bench-68259091c8d49d0ebd5efda9), contains two million binary-source function pairs for training, and 70K function pairs for evaluation.
+* [2025-05-21]: Release [LLM4Decompile-DCBench](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.6), a 1.3 billion-parameter model trained on 10% of the Decompile-Bench, specifically designed to decompile C/C++ code.
+* [2025-05-20]: Release [Decompile-Bench](https://huggingface.co/collections/LLM4Binary/decompile-bench-68259091c8d49d0ebd5efda9), contains two million binary-source function pairs for training, and 70K function pairs for evaluation.
 
 
 ## About
