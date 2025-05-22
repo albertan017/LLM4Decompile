@@ -170,8 +170,11 @@ for opt_state in OPT:
 ```
 
 Assembly instructions should be in the format:
-
-<FUNCTION_NAME>:\nOPERATIONS\nOPERATIONS\n
+```
+FUNCTION_NAME:
+OPERATIONS
+OPERATIONS
+```
 
 Typical assembly instructions may look like this:
 ```
