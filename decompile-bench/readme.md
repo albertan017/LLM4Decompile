@@ -1,10 +1,4 @@
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/albertan017/LLM4Decompile/blob/main/samples/logo-dark.png">
-    <img alt="LLM4Decompile" src="https://github.com/albertan017/LLM4Decompile/blob/main/samples/logo-light.png" width=55%>
-  </picture>
-</p>
+<h1 align="center">Decompile-Bench</h1>
 
 <p align="center">
     🚀&nbsp;<a href="#pipeline">Pipeline</a>
@@ -74,7 +68,9 @@ They contains the following columns:
 ## Metrics
 * **Re-executability** evaluates whether the decompiled code can execute properly and pass all the predefined test cases.
 * **Edit Similarity** based on Levenshtein Distance, this metric captures the minimum number of insertions, deletions, or substitutions needed to turn the generated code into the reference.
+
 For R2I, please refer to the [source project](https://github.com/e0mh4/R2I).
+
 ## Requirements
 * vllm >= 0.5.2
 ```
