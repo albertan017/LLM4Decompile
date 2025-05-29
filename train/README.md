@@ -1,3 +1,6 @@
+## Fine-tune LLM4Decompile with LLaMA-Factory
+Please refer to the folder [llama factory example](https://github.com/albertan017/LLM4Decompile/tree/main/train/llama_factory_llm4decompile)
+
 ## How to Fine-tune LLM4Decompile (Based on Ghidra Pseudo-Code)
 
 We provide script `finetune.py`, adapted from the [deepseek-coder](https://github.com/deepseek-ai/DeepSeek-Coder/blob/main/finetune/finetune_deepseekcoder.py) repository.
