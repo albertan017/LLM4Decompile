@@ -10,6 +10,7 @@
 </p>
 
 ## Updates
+* [2025-06-06]: Release [Decompile-Bench-Raw](https://huggingface.co/datasets/LLM4Binary/decompile-bench-raw), contains 100M unfiltered binary-source function pairs used to build Decompile-Bench. The corresponding [executable binaries](https://huggingface.co/datasets/LLM4Binary/decompile-bench-bins) are also available.
 * [2025-05-21]: Release [LLM4Decompile-DCBench](https://huggingface.co/LLM4Binary/llm4decompile-1.3b-v1.6), a 1.3 billion-parameter model trained on 10% of the Decompile-Bench, specifically designed to decompile C/C++ code.
 * [2025-05-20]: Release [Decompile-Bench](https://huggingface.co/collections/LLM4Binary/decompile-bench-68259091c8d49d0ebd5efda9), contains two million binary-source function pairs for training, and 70K function pairs for evaluation.
 
@@ -17,7 +18,7 @@
 ## About
 * **Decompile-Bench** is the first open-source dataset comprising two million binary-source function pairs condensed from 100 million collected function pairs, i.e., 450GB of binaries compiled from permissively licensed GitHub projects.
 * **Decompile-Bench-Eval** includes manually crafted binaries from the well-established HumanEval and MBPP, alongside the compiled GitHub repositories released after 2025 to mitigate data leakage issues.
-
+* **C and C++ Support:** These datasets include both **C** and **C++** source code, whereas earlier models (LLM4Decompile-V1.5, V2) and the HumanEval-Decompile dataset were limited to C only.
 
 ## Pipeline
 <p align="center">
