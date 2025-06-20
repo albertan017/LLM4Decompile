@@ -10,9 +10,9 @@ Readability Evaluation Template for Decompiled Function
 3. Evaluation Aspects
 Each aspect of the decompiled function should be rated on a scale from 1 (Poor) to 5 (Excellent). Provide brief justifications for each rating.
 3.1 Syntax Similarity
-- Are the variable names easy to understandin the decompiled function? 
+- Are the variable names easy to understanding the decompiled function? 
 - Does the decompiled control flow (loops, conditionals) closely match the original function?
-- Does the decompiled function keep the arry indexing and structure operation?
+- Does the decompiled function keep the array indexing and structure operation?
 Rating:
 Short Justification:
 
