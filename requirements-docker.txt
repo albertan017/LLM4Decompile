@@ -1,0 +1,5 @@
+transformers
+tqdm
+loguru
+text_generation
+numpy==1.23.3
