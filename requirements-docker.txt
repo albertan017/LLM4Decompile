@@ -1,0 +1,4 @@
+# Required for running demo.py
+tqdm
+numpy==1.23.3
+transformers==4.55.3
