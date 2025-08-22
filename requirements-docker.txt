@@ -1,5 +1,4 @@
-transformers
+# Required for running demo.py
 tqdm
-loguru
-text_generation
 numpy==1.23.3
+transformers==4.55.3
