@@ -169,6 +169,20 @@ print(f'original function:\n{func}')# Note we only decompile one function, where
 print(f'decompiled function:\n{c_func_decompile}')
 ```
 
+### Docker setup
+
+```
+# build docker
+docker build -t llm4decompile .
+
+# run docker with GPU
+docker run --gpus all -it --name llm4decompile llm4decompile /bin/bash
+
+# run demo.py (choose a model suitable for your resources before running)
+cd ghidra
+python demo.py
+```
+
 ## HumanEval-Decompile
 Data are stored in ``llm4decompile/decompile-eval/decompile-eval-executable-gcc-obj.json``, using JSON list format. There are 164*4 (O0, O1, O2, O3) samples, each with five keys:
 
