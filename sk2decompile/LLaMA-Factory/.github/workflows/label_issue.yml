@@ -1,0 +1,32 @@
+name: label_issue
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  label_issue:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          LABEL=""
+          NPU_KEYWORDS=(npu huawei ascend 华为 昇腾 910)
+          ISSUE_TITLE_LOWER=$(echo $ISSUE_TITLE | tr '[:upper:]' '[:lower:]')
+          for KEYWORD in ${NPU_KEYWORDS[@]}; do
+            if [[ $ISSUE_TITLE_LOWER == *$KEYWORD* ]] && [[ $ISSUE_TITLE_LOWER != *input* ]]; then
+              LABEL="npu"
+              break
+            fi
+          done
+          if [ -n "$LABEL" ]; then
+            gh issue edit $ISSUE_URL --add-label $LABEL
+          fi

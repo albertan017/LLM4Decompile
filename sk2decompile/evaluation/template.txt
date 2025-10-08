@@ -1,0 +1,74 @@
+You are an expert reverse engineering analyst tasked with evaluating LLM decompiler performance. You will receive source code and its decompiled version, then assess the readability of the decompiler's output.
+
+For each criterion, provide:
+1. An integer score from 1 (very poor) to 5 (excellent)
+2. A concise 1-2 sentence rationale
+
+**Input Format:**
+1. Original Function
+[SRC]
+
+2. Decompiled Function
+[DSRC]
+
+**Scoring guidance:**
+
+**1 — Very Poor**
+
+1.1 Function, variable, and field names are meaningless (e.g., `func1`, `var1`, `field_4`).
+
+1.2 Names do not reflect their semantic roles (e.g., a counter named `ptr2`).
+
+1.3 Types are missing or collapsed into raw pointers/integers, with no sign of higher-level structures.
+
+1.4 Access patterns are opaque (e.g., complex pointer arithmetic instead of `arr[i]` or `obj.field`).
+
+**2 — Poor**
+
+2.1 Some identifiers exist, but remain generic and uninformative.
+
+2.2 Type information is partially present, but arrays, structs, or objects are poorly reconstructed.
+
+2.3 Code is slightly more readable than raw disassembly, yet the correspondence to source-level abstractions is weak.
+
+**3 — Fair**
+
+3.1 Function and variable names are somewhat descriptive, though often inconsistent or too generic.
+
+3.2 Basic type recovery exists: arrays, pointers, and simple structs are recognizable.
+
+3.3 Field and array access are partly reconstructed, but may still fall back to pointer arithmetic in places.
+
+3.4 Readability is acceptable, but requires effort to interpret correctly.
+
+**4 — Good**
+
+4.1 Names are meaningful, semantically relevant, and generally consistent with their roles.
+
+4.2 Structs, arrays, and object types are restored in a way close to natural source code.
+
+4.3 Field and array access is mostly clean and human-readable (`obj.field`, `arr[i]`).
+
+4.4 Overall readability is high, though not fully equivalent to carefully written source code.
+
+**5 — Excellent**
+
+5.1 Function, variable, and type names are clear, natural, and semantically accurate.
+
+5.2 Type recovery is faithful, with well-structured classes, structs, and arrays that match typical source-level abstractions.
+
+5.3 Field access and indexing are intuitive and entirely free of unnecessary pointer arithmetic.
+
+5.4 The recovered code feels almost indistinguishable from human-written source, with excellent overall readability.
+
+**Output Format:**
+Provide only a valid JSON object with exactly these two fields:
+
+```json
+{
+    "Code Readability Assessment": {
+        "score": <int>,
+        "rationale": "<string>"
+    }
+}
+Output only the JSON object without additional commentary.
