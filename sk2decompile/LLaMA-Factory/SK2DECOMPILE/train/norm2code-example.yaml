@@ -1,0 +1,39 @@
+### model
+model_name_or_path: SK2DECOMPILE/saves/pseudo2norm-example
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+deepspeed: examples/deepspeed/ds_z2_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
+
+### dataset
+dataset: norm2code-examples
+template: sk2decompile
+cutoff_len: 2048
+max_samples: 100
+overwrite_cache: true
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
+
+### output
+output_dir: SK2DECOMPILE/saves/norm2code-example
+logging_steps: 10
+save_steps: 500
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none  # choices: [none, wandb, tensorboard, swanlab, mlflow]
+
+### train
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 8
+learning_rate: 3.0e-6
+num_train_epochs: 2.0
+lr_scheduler_type: cosine_with_min_lr
+lr_scheduler_kwargs: {"min_lr": 3.0e-7}
+warmup_ratio: 0.02
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
