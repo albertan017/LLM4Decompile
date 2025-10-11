@@ -23,7 +23,7 @@ args = ghidra_app.getScriptArgs()
 decompinterface = DecompInterface()
 
 # Open Current Program
-decompinterface.openProgram(currentProgram);
+decompinterface.openProgram(currentProgram)
 
 # Get Binary Functions
 functions = currentProgram.getFunctionManager().getFunctions(True)
