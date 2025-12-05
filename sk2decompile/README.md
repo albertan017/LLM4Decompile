@@ -39,7 +39,7 @@ SK2Decompile/
 └── README.md          # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
