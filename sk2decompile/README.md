@@ -18,7 +18,7 @@ SK²Decompile is a novel two-phase framework for binary decompilation using Larg
 
 This repository contains the complete implementation of our paper, including data preprocessing tools, training scripts, and evaluation benchmarks.
 
-## 🏗️ Architecture
+## Architecture
 
 Our two-phase approach is inspired by the skeleton-to-skin metaphor:
 
@@ -28,7 +28,7 @@ Binary/Pseudo-code → [Phase 1: Skeleton] → Normalized IR → [Phase 2: Skin]
                   (Structure Extraction)                   (Identifier Recovery)
 ```
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 SK2Decompile/
@@ -56,7 +56,7 @@ git clone https://github.com/yourusername/SK2Decompile.git
 cd SK2Decompile
 ```
 
-## 🤖 Training Pipeline
+## Training Pipeline
 
 ### Phase 0: Data Preprocessing
 
@@ -122,7 +122,7 @@ bash verl/SK2DECOMPILE/train/sk2decompile-rl.sh
 
 **RL Training Data:** `verl/SK2DECOMPILE/data/sk2decompile-rl-examples.parquet`
 
-### Phase 3: Evaluation
+## Evaluation
 ```
 cd ../evaluation
 ```
@@ -169,7 +169,7 @@ Our approach achieves state-of-the-art performance:
 3. **Generic Placeholders**: Language-agnostic intermediate representation
 4. **Independent Optimization**: Separate RL objectives for each phase
 
-## 📄 Citation
+## Citation
 
 If you use SK²Decompile in your research, please cite our paper:
 
@@ -182,7 +182,7 @@ If you use SK²Decompile in your research, please cite our paper:
 }
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Areas of interest:
 - Support for additional architectures (ARM, RISC-V)
@@ -190,11 +190,11 @@ We welcome contributions! Areas of interest:
 - Improved intermediate representations
 - Multi-language support
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License. See LICENSE file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 We thank the developers of:
 - [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) for the SFT framework
