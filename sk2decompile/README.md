@@ -174,11 +174,11 @@ Our approach achieves state-of-the-art performance:
 If you use SK²Decompile in your research, please cite our paper:
 
 ```bibtex
-@article{sk2decompile2024,
-  title={SK²Decompile: From Skeleton to Skin - A Two-Phase Approach for Binary Decompilation},
-  author={Your Name and Collaborators},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2024}
+@article{tan2025sk2decompile,
+  title={SK2Decompile: LLM-based Two-Phase Binary Decompilation from Skeleton to Skin},
+  author={Tan, Hanzhuo and Li, Weihao and Tian, Xiaolong and Wang, Siyi and Liu, Jiaming and Li, Jing and Zhang, Yuqun},
+  journal={arXiv preprint arXiv:2509.22114},
+  year={2025}
 }
 ```
 
