@@ -129,6 +129,9 @@ cd ../evaluation
 
 **Inference**
 ```
+pip install vllm
+apt install clang-format
+#translate the data into reverse_sample.json format
 python normalize_pseudo.py --input_json reverse_sample.json --output_json reverse_sample.json
 python sk2decompile.py --dataset_path reverse_sample.json --model_path LLM4Binary/sk2decompile-struct-6.7b --recover_model_path LLM4Binary/sk2decompile-ident-6.7
 ```
