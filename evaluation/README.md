@@ -21,7 +21,7 @@ python run_evaluation_llm4decompile_vllm.py \
   --repeat 1 \
   --num_workers 16 \
   --gpu_memory_utilization 0.82 \
-  --temperature 0 
+  --temperature 0
 ```
 
 ---

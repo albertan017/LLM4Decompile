@@ -44,17 +44,17 @@ contains three splits, huameval, mbpp, and github2025. We also provide a json ve
 They contains the following columns:
 ```
 {
-"index":"index of the function", 
-"func_name":"demangled name for he function", 
-"func_dep":"function dependecies (includes, help functions), or the path to the source code", 
-"func":"source code", 
-"test":"unit tests for the function, empty for github data", 
-"opt":"optimization, O0, O1, O2, O3", 
-"language":"language, c or cpp", 
-"asm":"assembly", 
-"ida_asm":"assembly from ida pro", 
-"ida_pseudo":"decompiled results (pseudo code) from ida pro", 
-"ghidra_asm":"assembly from ghidra", 
+"index":"index of the function",
+"func_name":"demangled name for he function",
+"func_dep":"function dependecies (includes, help functions), or the path to the source code",
+"func":"source code",
+"test":"unit tests for the function, empty for github data",
+"opt":"optimization, O0, O1, O2, O3",
+"language":"language, c or cpp",
+"asm":"assembly",
+"ida_asm":"assembly from ida pro",
+"ida_pseudo":"decompiled results (pseudo code) from ida pro",
+"ghidra_asm":"assembly from ghidra",
 "ghidra_pseudo":"decompiled results (pseudo code) from ghidra"
 }
 ```
@@ -140,7 +140,7 @@ for opt_state in OPT:
     subprocess.run(compile_command, shell=True, check=True)
     compile_command = f'objdump -d {output_file}.o > {output_file}.s'#disassemble the binary file into assembly instructions
     subprocess.run(compile_command, shell=True, check=True)
-    
+
     input_asm = ''
     with open(output_file+'.s') as f:#asm file
         asm= f.read()

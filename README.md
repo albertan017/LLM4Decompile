@@ -108,7 +108,7 @@ for opt_state in OPT:
     subprocess.run(compile_command, shell=True, check=True)
     compile_command = f'objdump -d {output_file}.o > {output_file}.s'#disassemble the binary file into assembly instructions
     subprocess.run(compile_command, shell=True, check=True)
-    
+
     input_asm = ''
     with open(output_file+'.s') as f:#asm file
         asm= f.read()
@@ -189,7 +189,7 @@ Data are stored in ``llm4decompile/decompile-eval/decompile-eval-executable-gcc-
 
 *   ``task_id``: indicates the ID of the problem.
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
-*   ``c_func``: C solution for HumanEval problem. 
+*   ``c_func``: C solution for HumanEval problem.
 *   ``c_test``: C test assertions.
 *   ``input_asm_prompt``: assembly instructions with prompts, can be derived as in our [preprocessing example](https://github.com/albertan017/LLM4Decompile?tab=readme-ov-file#quick-start).
 
@@ -207,7 +207,7 @@ This code repository is licensed under the MIT and DeepSeek License.
 ## Citation
 ```
 @misc{tan2024llm4decompile,
-      title={LLM4Decompile: Decompiling Binary Code with Large Language Models}, 
+      title={LLM4Decompile: Decompiling Binary Code with Large Language Models},
       author={Hanzhuo Tan and Qi Luo and Jing Li and Yuqun Zhang},
       year={2024},
       eprint={2403.05286},

@@ -63,7 +63,7 @@ apt-get update
 apt-get upgrade
 apt install openjdk-17-jdk openjdk-17-jre
 ```
-Please check [Ghidra install guide](https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/Ghidra_11.1.1_build/GhidraDocs/InstallationGuide.html) for other platforms. 
+Please check [Ghidra install guide](https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/Ghidra_11.1.1_build/GhidraDocs/InstallationGuide.html) for other platforms.
 
 3. Use Ghidra Headless to decompile binary (demo.py)
 
@@ -144,7 +144,7 @@ undefined4 func0(float param_1,long param_2,int param_3)
 {
   int local_28;
   int local_24;
-  
+
   local_24 = 0;
   do {
     local_28 = local_24;
@@ -193,7 +193,7 @@ Data for the pseudo-code are stored in ``llm4decompile/decompile-eval/decompile-
 
 *   ``task_id``: indicates the ID of the problem.
 *   ``type``: the optimization stage, is one of [O0, O1, O2, O3].
-*   ``c_func``: C solution for HumanEval problem. 
+*   ``c_func``: C solution for HumanEval problem.
 *   ``c_test``: C test assertions.
 *   ``input_asm_prompt``: Ghidra decompiled result.
 
