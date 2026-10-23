@@ -5,7 +5,7 @@ import os
 import json
 from loguru import logger
 import traceback
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from pathlib import Path
 import sys
 from tqdm import tqdm
@@ -16,7 +16,7 @@ import multiprocessing
 logger.add(sys.stdout, colorize=False, format="{time} {level} {message}")
 
 
-def parse_args() -> ArgumentParser:
+def parse_args() -> Namespace:
     parser = ArgumentParser()
     parser.add_argument("--model_path", type=str)
     parser.add_argument("--dtype", type=str, default="bfloat16")
@@ -29,7 +29,10 @@ def parse_args() -> ArgumentParser:
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--testset_path", type=str)
     parser.add_argument("--num_workers", type=int, default=16)
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.repeat < 1:
+        parser.error("--repeat must be a positive integer")
+    return args
 
 
 def evaluate_func(params):
